@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1781808436599",
+    "name": "Guest Test",
+    "email": "guest@example.com",
+    "attendance": "attending",
+    "guests": 2,
+    "dietary": "Gluten free",
+    "message": "Congratulations!",
+    "submittedAt": "2026-06-18T18:47:16.599Z"
+  },
+  {
+    "id": "1781822439605",
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "attendance": "attending",
+    "guests": 3,
+    "dietary": "None",
+    "message": "Congratulations!",
+    "submittedAt": "2026-06-18T22:40:39.605Z"
+  },
+  {
+    "id": "1781823577843",
+    "name": "Alice Smith",
+    "email": "alice@example.com",
+    "attendance": "attending",
+    "guests": 0,
+    "dietary": "",
+    "message": "Wishing you a lifetime of love and happiness!",
+    "submittedAt": "2026-06-18T22:59:37.843Z"
+  }
+]
