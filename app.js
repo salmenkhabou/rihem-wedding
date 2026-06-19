@@ -317,4 +317,54 @@ document.addEventListener('DOMContentLoaded', () => {
       statusMsg.classList.add('bg-red-500/10', 'border', 'border-red-500', 'text-red-300');
     }
   }
+
+  // 8. Copy Website Link Handler
+  const copyLinkBtn = document.getElementById('copy-link-btn');
+  const copyBtnText = document.getElementById('copy-btn-text');
+  
+  if (copyLinkBtn) {
+    copyLinkBtn.addEventListener('click', () => {
+      const siteUrl = 'https://rihem-mohamed-wedding.netlify.app/';
+      
+      function showSuccess() {
+        copyBtnText.textContent = 'Link Copied!';
+        copyLinkBtn.classList.add('bg-gold/40');
+        setTimeout(() => {
+          copyBtnText.textContent = 'Copy Website Link';
+          copyLinkBtn.classList.remove('bg-gold/40');
+        }, 2000);
+      }
+
+      function fallbackCopyText(text) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed"; // Avoid scrolling to bottom in some browsers
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+          const successful = document.execCommand('copy');
+          if (successful) {
+            showSuccess();
+          } else {
+            console.error('Fallback copy failed');
+          }
+        } catch (err) {
+          console.error('Fallback copy error: ', err);
+        }
+        document.body.removeChild(textArea);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(siteUrl)
+          .then(showSuccess)
+          .catch(err => {
+            console.error('Failed to copy link using clipboard API: ', err);
+            fallbackCopyText(siteUrl);
+          });
+      } else {
+        fallbackCopyText(siteUrl);
+      }
+    });
+  }
 });

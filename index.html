@@ -285,33 +285,23 @@
 
         <div class="grid md:grid-cols-2 gap-8 items-stretch">
           
-          <!-- Column 1: Google Drive QR Code -->
+          <!-- Column 1: Share Website QR Code -->
           <div class="bg-emerald-dark/60 border border-gold/30 rounded-lg p-6 flex flex-col items-center justify-between backdrop-blur-sm">
-            <h3 class="font-serif text-lg text-gold-light font-semibold mb-4">Scan & Upload to Drive</h3>
+            <h3 class="font-serif text-lg text-gold-light font-semibold mb-4">Share the Website</h3>
             
-            <!-- Beautiful Stylized SVG QR Code pointing to the Google Drive Folder -->
-            <div class="qr-frame mb-4 w-40 h-40 flex items-center justify-center">
-              <svg viewBox="0 0 100 100" class="w-full h-full text-emerald-dark" fill="currentColor">
-                <!-- Outer boundary / alignment patterns typical of QR -->
-                <path d="M0,0 h30 v10 h-20 v20 h-10 z M70,0 h30 v30 h-10 v-20 h-20 z M0,70 h10 v20 h20 v10 h-30 z M90,90 h-20 v10 h30 v-30 h-10 z" />
-                <!-- Center simulated QR code layout -->
-                <path d="M10,10 h15 v15 h-15 z M13,13 h9 v9 h-9 z M75,10 h15 v15 h-15 z M78,13 h9 v9 h-9 z M10,75 h15 v15 h-15 z M13,78 h9 v9 h-9 z" />
-                <path d="M35,15 h5 v10 h-5 z M45,10 h10 v5 h-10 z M60,15 h5 v5 h-5 z M35,30 h10 v5 h-10 z M50,25 h15 v5 h-15 z M35,45 h5 v15 h-5 z M45,40 h15 v5 h-15 z M40,55 h10 v5 h-10 z M15,40 h10 v5 h-10 z M25,45 h5 v15 h-5 z M10,60 h15 v5 h-15 z M75,40 h15 v5 h-15 z M70,50 h10 v15 h-10 z M85,60 h5 v5 h-5 z M40,70 h5 v15 h-5 z M50,75 h10 v5 h-10 z M65,70 h10 v5 h-10 z M45,90 h15 v5 h-15 z M70,80 h15 v5 h-15 z M80,90 h10 v5 h-10 z" />
-                <!-- Google Drive icon mock in middle -->
-                <circle cx="50" cy="50" r="10" fill="#faf7f2" />
-                <polygon points="50,44 54,51 46,51" fill="#4285F4" />
-                <polygon points="46,51 54,51 50,56" fill="#34A853" />
-              </svg>
+            <!-- Real QR Code pointing to the wedding website -->
+            <div class="qr-frame mb-4 w-40 h-40 flex items-center justify-center bg-white rounded-lg p-2 border border-gold/40 shadow-md">
+              <img src="qr_code.png" alt="Share Website QR Code" class="w-full h-full object-contain"/>
             </div>
             
             <p class="font-sans text-xs text-gray-300 leading-relaxed mb-6">
-              Scan this QR code with your phone camera or click the link below to access the shared wedding folder owned by <strong class="text-gold-light">salmen.khabou@ieee.org</strong>.
+              Scan this QR code with your phone camera or use the button below to copy the link and share this digital invitation!
             </p>
             
-            <a href="https://drive.google.com/drive/folders/1dYQe1Vo01fportTPb9oIzq0Ye17qmopy?usp=sharing" target="_blank" class="w-full bg-gold/20 hover:bg-gold/30 text-gold-light border border-gold/40 hover:border-gold py-2.5 rounded font-sans text-xs font-semibold tracking-widest uppercase transition-all flex items-center justify-center gap-2">
-              <span class="material-symbols-outlined text-sm">open_in_new</span>
-              <span>Open Google Drive</span>
-            </a>
+            <button id="copy-link-btn" class="w-full bg-gold/20 hover:bg-gold/30 text-gold-light border border-gold/40 hover:border-gold py-2.5 rounded font-sans text-xs font-semibold tracking-widest uppercase transition-all flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-sm">content_copy</span>
+              <span id="copy-btn-text">Copy Website Link</span>
+            </button>
           </div>
 
           <!-- Column 2: Direct Upload on Website -->
