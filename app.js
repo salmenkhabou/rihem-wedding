@@ -74,8 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   musicToggle.addEventListener('click', toggleMusic);
 
-  // 3. Countdown Timer - Mohamed & Rihem: July 10, 2026 at 7:00 PM (19:00:00)
-  const targetDate = new Date('July 10, 2026 19:00:00').getTime();
+  // 3. Countdown Timer - Mohamed & Rihem: July 11, 2026 at 7:00 PM (19:00:00)
+  const targetDate = new Date('July 11, 2026 19:00:00').getTime();
 
   function updateCountdown() {
     const now = new Date().getTime();
