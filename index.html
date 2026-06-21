@@ -62,7 +62,7 @@
       <div class="envelope-bottom"></div>
       
       <!-- Wax Seal -->
-      <button id="wax-seal-btn" class="wax-seal absolute top-[150px] left-[225px] transform -translate-x-1/2 -translate-y-1/2 z-50 w-16 h-16 rounded-full flex flex-col items-center justify-center text-white select-none max-[500px]:top-[110px] max-[500px]:left-[160px] max-[500px]:w-14 max-[500px]:h-14">
+      <button id="wax-seal-btn" class="wax-seal w-16 h-16 rounded-full flex flex-col items-center justify-center text-white select-none max-[500px]:w-14 max-[500px]:h-14">
         <span class="font-script text-2xl font-bold leading-none text-gold-light">M&R</span>
         <span class="text-[7px] uppercase tracking-wider font-sans font-semibold text-white/90">Open</span>
       </button>
@@ -109,9 +109,9 @@
       </div>
 
       <!-- Middle Names -->
-      <div class="text-center z-20 my-auto py-8 text-center">
-        <h1 class="font-script text-gold-light text-7xl md:text-8xl drop-shadow-md mb-4 animate-float">Mohamed & Rihem</h1>
-        <p class="font-serif text-lg md:text-xl italic text-gray-200 font-light mb-8 max-w-md mx-auto px-4">
+      <div class="text-center z-20 my-auto py-8">
+        <h1 class="font-script text-gold-light text-5xl sm:text-7xl md:text-8xl drop-shadow-md mb-4 animate-float">Mohamed & Rihem</h1>
+        <p class="font-serif text-base sm:text-lg md:text-xl italic text-gray-200 font-light mb-8 max-w-md mx-auto px-4">
           invite you to celebrate their wedding and a new beginning of love, laughter, and happiness
         </p>
         
@@ -122,7 +122,7 @@
         <div class="font-sans text-sm tracking-widest uppercase text-gold-light font-semibold mb-1">
           Saturday, July 11, 2026
         </div>
-        <div class="font-serif text-lg text-gray-300 italic">
+        <div class="font-serif text-base sm:text-lg text-gray-300 italic">
           At seven o'clock in the evening
         </div>
         <div class="font-sans text-xs tracking-wider text-gray-400 mt-2">
@@ -133,7 +133,7 @@
       <!-- Countdown Timer & Bottom Scroll Cue -->
       <div class="w-full max-w-lg mx-auto z-20 text-center flex flex-col items-center">
         <!-- Countdown Container -->
-        <div class="grid grid-cols-4 gap-4 px-4 py-3 bg-emerald-dark/70 border border-gold/30 rounded-lg backdrop-blur-sm w-full max-w-sm mb-6">
+        <div class="grid grid-cols-4 gap-2 sm:gap-4 px-2 sm:px-4 py-3 bg-emerald-dark/70 border border-gold/30 rounded-lg backdrop-blur-sm w-full max-w-sm mb-6">
           <div class="text-center border-r border-gold/20 last:border-none">
             <span id="days" class="block font-serif text-2xl text-gold font-bold">00</span>
             <span class="text-[9px] uppercase tracking-wider font-sans text-gray-300">Days</span>
@@ -168,17 +168,38 @@
           <img src="favicon.png" alt="Monogram Logo" class="w-8 h-8 rounded-full border border-gold/30 shadow-sm"/>
           <span class="font-serif text-sm font-semibold tracking-wider text-emerald-light">M&R</span>
         </a>
-        <!-- Links -->
-        <div class="flex gap-4 md:gap-6 items-center font-sans text-[10px] tracking-widest uppercase font-semibold text-emerald-light">
+        <!-- Links (Desktop View) -->
+        <div class="hidden md:flex gap-4 md:gap-6 items-center font-sans text-[10px] tracking-widest uppercase font-semibold text-emerald-light">
           <a href="#our-story" class="hover:text-gold transition-colors">Our Story</a>
           <a href="#schedule" class="hover:text-gold transition-colors">Schedule</a>
           <a href="#share-moments" class="hover:text-gold transition-colors text-gold">Share Photos</a>
           <a href="#gallery" class="hover:text-gold transition-colors">Gallery</a>
           <a href="#cute-messages" class="hover:text-gold transition-colors">Cute Messages</a>
         </div>
-
+        <!-- Hamburger Button (Mobile View) -->
+        <button id="mobile-menu-btn" class="md:hidden text-emerald hover:text-gold transition-colors focus:outline-none z-50 flex items-center justify-center">
+          <span id="menu-icon" class="material-symbols-outlined text-[28px]">menu</span>
+        </button>
       </div>
     </nav>
+
+    <!-- Mobile Fullscreen Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-emerald-dark/98 z-40 flex flex-col items-center justify-center">
+      <!-- Elegant interior borders -->
+      <div class="absolute inset-4 border border-gold/20 pointer-events-none"></div>
+      <div class="absolute inset-6 border border-gold/10 pointer-events-none"></div>
+      <!-- Links list -->
+      <div class="flex flex-col items-center gap-6 text-center z-50">
+        <span class="material-symbols-outlined text-gold text-4xl mb-2">favorite</span>
+        <a href="#our-story" class="mobile-nav-link font-serif text-xl tracking-widest text-cream uppercase">Our Story</a>
+        <a href="#schedule" class="mobile-nav-link font-serif text-xl tracking-widest text-cream uppercase">Schedule</a>
+        <a href="#share-moments" class="mobile-nav-link font-serif text-xl tracking-widest text-gold uppercase">Share Photos</a>
+        <a href="#gallery" class="mobile-nav-link font-serif text-xl tracking-widest text-cream uppercase">Gallery</a>
+        <a href="#cute-messages" class="mobile-nav-link font-serif text-xl tracking-widest text-cream uppercase">Cute Messages</a>
+        <div class="w-12 h-[1px] bg-gold/30 my-4"></div>
+        <span class="font-script text-gold-light text-2xl">M&R</span>
+      </div>
+    </div>
 
 
     <!-- Our Story Section -->
@@ -312,8 +333,8 @@
             <div id="upload-zone" class="upload-zone rounded-lg p-8 flex flex-col items-center justify-center h-44">
               <input type="file" id="photo-input" accept="image/*" class="hidden" multiple/>
               <span class="material-symbols-outlined text-gold text-4xl mb-2">cloud_upload</span>
-              <p class="font-sans text-xs text-gold-light font-medium tracking-wide">Drag & drop your photos here</p>
-              <p class="font-sans text-[10px] text-gray-400 mt-1">or click to browse from device</p>
+              <p class="font-sans text-xs text-gold-light font-medium tracking-wide text-center">Tap to choose or drag photos here</p>
+              <p class="font-sans text-[10px] text-gray-400 mt-1 text-center md:block hidden">or drop files directly here</p>
             </div>
 
             <!-- Upload Progress & Status -->
@@ -408,6 +429,12 @@
       <div class="overflow-hidden rounded-lg border border-gold/30 shadow-md h-64 relative">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d104879.48937033571!2d10.669865181514785!3d34.767355030829875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13002cda1486c6e1%3A0x19ee61302a7373b3!2sSfax%2C%20Tunisia!5e0!3m2!1sen!2sus!4v1718738200000!5m2!1sen!2sus" class="absolute inset-0 w-full h-full border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
+      <div class="mt-4 flex justify-center">
+        <a href="https://www.google.com/maps?q=Aurora,Sfax,Tunisia" target="_blank" class="bg-gold/10 hover:bg-gold/20 text-gold-dark hover:text-gold border border-gold/40 hover:border-gold py-2 px-5 rounded-lg font-sans text-xs font-semibold tracking-widest uppercase transition-all flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-sm">directions</span>
+          Get Directions
+        </a>
+      </div>
     </section>
 
     <!-- registry & footer info -->
@@ -431,6 +458,14 @@
     </footer>
 
   </main>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox-modal" class="fixed inset-0 bg-black/95 z-50 flex items-center justify-center">
+    <button id="lightbox-close" class="absolute top-6 right-6 text-white hover:text-gold transition-colors focus:outline-none">
+      <span class="material-symbols-outlined text-4xl">close</span>
+    </button>
+    <img id="lightbox-img" src="" alt="Fullscreen view" class="max-w-[90%] max-h-[85vh] rounded-lg shadow-2xl border border-gold/25 object-contain"/>
+  </div>
 
   <script src="app.js"></script>
 </body>

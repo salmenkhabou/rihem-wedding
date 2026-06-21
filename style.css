@@ -37,7 +37,11 @@ body {
   border: 2px solid #997300;
   cursor: pointer;
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 50;
   overflow: hidden;
 }
 
@@ -284,7 +288,7 @@ body {
 
 @media (max-width: 768px) {
   .timeline-line::before {
-    left: 20px;
+    left: 31px;
     transform: none;
   }
 }
@@ -329,3 +333,103 @@ body {
   border-radius: 16px;
   pointer-events: none;
 }
+
+/* Extra Envelope Responsiveness for screens under 360px */
+@media (max-width: 360px) {
+  .envelope {
+    width: 280px;
+    height: 190px;
+  }
+  .envelope::before {
+    border-left-width: 140px;
+    border-right-width: 140px;
+    border-top-width: 95px;
+  }
+  .envelope-left {
+    border-left-width: 140px;
+    border-top-width: 95px;
+    border-bottom-width: 95px;
+  }
+  .envelope-right {
+    border-right-width: 140px;
+    border-top-width: 95px;
+    border-bottom-width: 95px;
+  }
+  .envelope-bottom {
+    border-left-width: 140px;
+    border-right-width: 140px;
+    border-bottom-width: 95px;
+  }
+  .envelope-card {
+    top: 8px;
+    left: 8px;
+    width: 264px;
+    height: 174px;
+    padding: 8px;
+  }
+  .envelope.open .envelope-card {
+    transform: translateY(-80px);
+  }
+}
+
+/* Mobile Fullscreen Menu Styles */
+#mobile-menu {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  visibility: hidden;
+}
+
+#mobile-menu.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.mobile-nav-link {
+  position: relative;
+  display: inline-block;
+  padding: 0.5rem 0;
+}
+
+.mobile-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--gold);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.mobile-nav-link:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Lightbox Modal Styles */
+#lightbox-modal {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#lightbox-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+#lightbox-img {
+  transform: scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#lightbox-modal.active #lightbox-img {
+  transform: scale(1);
+}
+

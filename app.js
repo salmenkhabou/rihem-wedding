@@ -15,6 +15,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const rsvpForm = document.getElementById('rsvp-form');
   const rsvpResponse = document.getElementById('rsvp-response');
   const submitBtn = document.getElementById('submit-btn');
+
+  // Mobile Nav Elements
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+  // Lightbox Elements
+  const lightboxModal = document.getElementById('lightbox-modal');
+  const lightboxClose = document.getElementById('lightbox-close');
+  const lightboxImg = document.getElementById('lightbox-img');
   // Cute Message Elements are using existing IDs to maintain server compatibility.
 
   // Photo Hub Elements
@@ -178,13 +189,19 @@ document.addEventListener('DOMContentLoaded', () => {
     galleryGrid.innerHTML = '';
     DEFAULT_PHOTOS.forEach(photoUrl => {
       const card = document.createElement('div');
-      card.className = 'overflow-hidden rounded-lg border border-gold/30 shadow-md aspect-square relative group bg-emerald/10';
+      card.className = 'overflow-hidden rounded-lg border border-gold/30 shadow-md aspect-square relative group bg-emerald/10 cursor-pointer';
       
       const img = document.createElement('div');
       img.className = 'absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500';
       img.style.backgroundImage = `url('${photoUrl}')`;
       
       card.appendChild(img);
+
+      // Open in lightbox on click
+      card.addEventListener('click', () => {
+        openLightbox(photoUrl);
+      });
+
       galleryGrid.appendChild(card);
     });
   }
@@ -367,4 +384,69 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // 9. Mobile Menu Toggle Controller
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+      const isActive = mobileMenu.classList.toggle('active');
+      if (isActive) {
+        menuIcon.textContent = 'close';
+        menuIcon.classList.add('text-gold');
+      } else {
+        menuIcon.textContent = 'menu';
+        menuIcon.classList.remove('text-gold');
+      }
+    });
+
+    // Close menu when clicking navigation links
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        menuIcon.textContent = 'menu';
+        menuIcon.classList.remove('text-gold');
+      });
+    });
+  }
+
+  // 10. Lightbox Modal Controller
+  function openLightbox(photoUrl) {
+    if (lightboxImg && lightboxModal) {
+      lightboxImg.src = photoUrl;
+      lightboxImg.alt = "Wedding photo view";
+      lightboxModal.classList.add('active');
+    }
+  }
+
+  function closeLightbox() {
+    if (lightboxModal) {
+      lightboxModal.classList.remove('active');
+    }
+  }
+
+  if (lightboxClose) {
+    lightboxClose.addEventListener('click', closeLightbox);
+  }
+
+  if (lightboxModal) {
+    // Close lightbox on clicking the backdrop
+    lightboxModal.addEventListener('click', (e) => {
+      if (e.target === lightboxModal) {
+        closeLightbox();
+      }
+    });
+  }
+
+  // Close lightbox or mobile menu on Escape key press
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeLightbox();
+      if (mobileMenu && mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+        if (menuIcon) {
+          menuIcon.textContent = 'menu';
+          menuIcon.classList.remove('text-gold');
+        }
+      }
+    }
+  });
 });
