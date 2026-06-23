@@ -28,7 +28,7 @@
             },
             emerald: {
               light: '#eae3d2', /* Warm beige sand */
-              DEFAULT: '#f5efeb', /* Main background warm sand */
+              DEFAULT: '#f4f3ef', /* Main background paper cardstock */
               dark: '#cbd4cb', /* Sage border/accent */
             },
             cream: '#ffffff', /* Pure white cards */
@@ -45,11 +45,11 @@
   
   <link href="style.css" rel="stylesheet"/>
 </head>
-<body class="bg-[#f5efeb] text-[#322d29] selection:bg-gold/30">
+<body class="bg-[#f4f3ef] text-[#2d362e] selection:bg-gold/30">
 
   <!-- Interactive 3D Envelope Wrapper (Warm Beige Theme) -->
   <div id="envelope-wrapper" class="flex flex-col items-center justify-center">
-    <div class="text-center mb-8 text-[#322d29] px-4 max-w-sm animate-fade-in">
+    <div class="text-center mb-8 text-[#2d362e] px-4 max-w-sm animate-fade-in">
       <span class="material-symbols-outlined text-gold text-5xl mb-2 animate-bounce">mail</span>
       <h2 class="font-serif text-3xl font-light tracking-wide text-gold-dark mb-1">Notre Invitation</h2>
       <p class="font-sans text-xs uppercase tracking-widest text-gray-500">Nous nous marions !</p>
@@ -62,9 +62,8 @@
       <div class="envelope-bottom"></div>
       
       <!-- Wax Seal -->
-      <button id="wax-seal-btn" class="wax-seal w-16 h-16 rounded-full flex flex-col items-center justify-center text-white select-none max-[500px]:w-14 max-[500px]:h-14" aria-label="Ouvrir l'enveloppe de l'invitation">
-        <span class="font-script text-2xl font-bold leading-none text-gold-light">M&R</span>
-        <span class="text-[7px] uppercase tracking-wider font-sans font-semibold text-white/90">Ouvrir</span>
+      <button id="wax-seal-btn" class="wax-seal w-16 h-16 rounded-full flex items-center justify-center p-1.5 max-[500px]:w-14 max-[500px]:h-14" aria-label="Ouvrir l'enveloppe de l'invitation">
+        <img src="favicon.png" alt="Sceau RM" class="w-[85%] h-[85%] object-contain"/>
       </button>
 
       <!-- Invitation Card inside Envelope (Landscape Split Layout) -->
@@ -102,8 +101,11 @@
     <!-- Dashboard Bento Grid Container -->
     <div class="dashboard-container space-y-5">
       
-      <!-- Card 1: Header Announcement & Countdown Card (White Card, Bento Main) -->
+      <!-- Card 1: Header Announcement Card (White Card, Bento Main) -->
       <section id="welcome-card" class="card-premium-cream reveal-card text-center flex flex-col items-center p-6 sm:p-8">
+        <!-- Monogram Logo -->
+        <img src="favicon.png" alt="Monogramme RM" class="w-16 h-16 object-contain mb-3"/>
+        
         <p class="font-sans text-[9px] uppercase tracking-widest text-gold-dark font-bold mb-4">Avec la bénédiction de leurs familles</p>
         
         <!-- Large Portrait Image of the couple -->
@@ -121,27 +123,11 @@
           <span class="material-symbols-outlined text-gold text-[16px]">favorite</span>
         </div>
 
-        <!-- Embedded Countdown Widget (Exactly like app-style dashboards) -->
-        <div class="w-full max-w-xs bg-[#f5efeb] border border-gold/30 rounded-2xl p-4 my-2 text-charcoal">
-          <p class="font-sans text-[8px] uppercase tracking-widest text-gold-dark font-bold mb-3">COMPTE À REBOURS</p>
-          <div class="grid grid-cols-4 gap-1.5">
-            <div class="text-center">
-              <span id="days" class="block font-serif text-xl font-bold text-gold-dark">00</span>
-              <span class="text-[7px] uppercase tracking-wider font-sans text-gray-500">Jours</span>
-            </div>
-            <div class="text-center border-l border-gold/25">
-              <span id="hours" class="block font-serif text-xl font-bold text-gold-dark">00</span>
-              <span class="text-[7px] uppercase tracking-wider font-sans text-gray-500">Heures</span>
-            </div>
-            <div class="text-center border-l border-gold/25">
-              <span id="minutes" class="block font-serif text-xl font-bold text-gold-dark">00</span>
-              <span class="text-[7px] uppercase tracking-wider font-sans text-gray-500">Min</span>
-            </div>
-            <div class="text-center border-l border-gold/25">
-              <span id="seconds" class="block font-serif text-xl font-bold text-gold-dark">00</span>
-              <span class="text-[7px] uppercase tracking-wider font-sans text-gray-500">Sec</span>
-            </div>
-          </div>
+        <div class="font-sans text-xs tracking-widest uppercase text-gold-dark font-bold mb-1">
+          Samedi 11 Juillet 2026
+        </div>
+        <div class="font-serif text-xs text-gray-500 italic">
+          À 19 heures
         </div>
       </section>
 
@@ -152,7 +138,7 @@
         <div class="card-premium-cream reveal-card flex flex-col justify-between items-center text-center p-6">
           <div class="flex flex-col items-center">
             <span class="material-symbols-outlined text-gold-dark text-2xl mb-2">calendar_month</span>
-            <h3 class="font-serif text-base font-bold text-[#322d29] mb-1">Date & Lieu</h3>
+            <h3 class="font-serif text-base font-bold text-[#2d362e] mb-1">Date & Lieu</h3>
             <p class="font-sans text-[8px] text-gray-400 uppercase tracking-widest mb-4">Détails de la Célébration</p>
           </div>
           <div class="my-3">
@@ -168,16 +154,16 @@
           </div>
         </div>
 
-        <!-- Card 3: Dress Code Card (Light Beige/Sand Card) -->
-        <div class="card-premium-dark reveal-card flex flex-col justify-between items-center text-center p-6">
+        <!-- Card 3: Dress Code Card (White Card) -->
+        <div class="card-premium-cream reveal-card flex flex-col justify-between items-center text-center p-6">
           <div class="flex flex-col items-center">
             <span class="material-symbols-outlined text-gold-dark text-2xl mb-2">styler</span>
-            <h3 class="font-serif text-base font-bold text-[#322d29] mb-1">Code Vestimentaire</h3>
-            <p class="font-sans text-[8px] text-gray-500 uppercase tracking-widest mb-4">Guide de Tenue</p>
+            <h3 class="font-serif text-base font-bold text-[#2d362e] mb-1">Code Vestimentaire</h3>
+            <p class="font-sans text-[8px] text-gray-400 uppercase tracking-widest mb-4">Guide de Tenue</p>
           </div>
           <div class="my-auto text-center">
-            <span class="font-sans text-sm font-bold text-[#322d29] tracking-wider uppercase block mb-1">TENUE DE SOIRÉE</span>
-            <p class="font-serif text-xs italic text-gray-600 max-w-[190px] mx-auto leading-relaxed">
+            <span class="font-sans text-sm font-bold text-[#2d362e] tracking-wider uppercase block mb-1">TENUE DE SOIRÉE</span>
+            <p class="font-serif text-xs italic text-gray-500 max-w-[190px] mx-auto leading-relaxed">
               Nous suggérons des tons terreux et une tenue de soirée pour nos invités
             </p>
           </div>
@@ -195,11 +181,39 @@
           </div>
         </div>
 
-        <!-- Card 4: Share Photos & Direct Upload Card (White Card) -->
+        <!-- Card 4: Countdown Card (Solid Dark Olive Green Card) -->
+        <div class="card-premium-dark reveal-card flex flex-col items-center justify-between text-center min-h-[220px] p-6">
+          <div class="flex flex-col items-center">
+            <span class="material-symbols-outlined text-gold text-2xl mb-1.5">hourglass_empty</span>
+            <h3 class="font-serif text-sm font-semibold text-gold-light tracking-widest uppercase mb-3">COMPTE À REBOURS</h3>
+          </div>
+          
+          <div class="grid grid-cols-4 gap-2 w-full max-w-[280px] px-2 text-white">
+            <div class="text-center">
+              <span id="days" class="block font-serif text-2xl text-gold font-bold">00</span>
+              <span class="text-[8px] uppercase tracking-wider font-sans text-gray-300">Jours</span>
+            </div>
+            <div class="text-center border-l border-gold/20">
+              <span id="hours" class="block font-serif text-2xl text-gold font-bold">00</span>
+              <span class="text-[8px] uppercase tracking-wider font-sans text-gray-300">Heures</span>
+            </div>
+            <div class="text-center border-l border-gold/20">
+              <span id="minutes" class="block font-serif text-2xl text-gold font-bold">00</span>
+              <span class="text-[8px] uppercase tracking-wider font-sans text-gray-300">Min</span>
+            </div>
+            <div class="text-center border-l border-gold/20">
+              <span id="seconds" class="block font-serif text-2xl text-gold font-bold">00</span>
+              <span class="text-[8px] uppercase tracking-wider font-sans text-gray-300">Sec</span>
+            </div>
+          </div>
+          <p class="font-sans text-[7px] uppercase tracking-widest text-gold-light/60 mt-4 font-semibold">Jusqu'au moment de se dire oui</p>
+        </div>
+
+        <!-- Card 5: Share Photos & Direct Upload Card (White Card) -->
         <div id="share-moments" class="card-premium-cream reveal-card flex flex-col justify-between items-center text-center p-6">
           <div class="flex flex-col items-center">
             <span class="material-symbols-outlined text-gold-dark text-2xl mb-2">cloud_upload</span>
-            <h3 class="font-serif text-base font-bold text-[#322d29] mb-1">Partager des Photos</h3>
+            <h3 class="font-serif text-base font-bold text-[#2d362e] mb-1">Partager des Photos</h3>
             <p class="font-sans text-[8px] text-gray-400 uppercase tracking-widest mb-3">Ajouter directement sur Google Drive</p>
           </div>
           
@@ -216,7 +230,7 @@
               <span id="upload-filename" class="truncate max-w-[120px]">Photo.jpg</span>
               <span id="upload-percentage">0%</span>
             </div>
-            <div class="w-full bg-[#f5efeb] rounded-full overflow-hidden">
+            <div class="w-full bg-[#f4f3ef] rounded-full overflow-hidden">
               <div id="upload-progress-bar" class="upload-progress-bar"></div>
             </div>
           </div>
@@ -232,41 +246,41 @@
           </div>
         </div>
 
-        <!-- Card 5: RSVP / Wishes Card (White Card) -->
-        <div id="cute-messages" class="card-premium-cream reveal-card flex flex-col justify-between p-6 scroll-mt-20 text-center">
+        <!-- Card 6: RSVP / Wishes Card (Solid Dark Olive Green Card, col-span-2) -->
+        <div id="cute-messages" class="card-premium-dark reveal-card col-span-2 text-center p-6 scroll-mt-20">
           <div>
-            <span class="material-symbols-outlined text-gold-dark text-2xl mb-1">favorite</span>
-            <h3 class="font-script text-gold-dark text-4xl mb-1">Confirmer Votre Présence</h3>
-            <p class="font-serif italic text-gray-400 text-xs mb-4">
+            <span class="material-symbols-outlined text-gold text-2xl mb-1.5">favorite</span>
+            <h3 class="font-script text-gold-light text-4xl mb-1">Confirmer Votre Présence</h3>
+            <p class="font-serif italic text-gray-300 text-xs mb-5">
               Laissez vos vœux chaleureux ou conseils de mariage pour Mohamed & Rihem !
             </p>
           </div>
 
           <!-- Messages Form -->
-          <form id="rsvp-form" class="space-y-3 text-left w-full">
+          <form id="rsvp-form" class="space-y-3.5 text-left max-w-sm mx-auto bg-[#f4f3ef]/10 p-5 rounded-2xl border border-gold/25">
             <div>
-              <label for="rsvp-name" class="font-sans text-[9px] uppercase tracking-widest text-gold-dark font-bold block mb-1">Nom complet *</label>
+              <label for="rsvp-name" class="font-sans text-[9px] uppercase tracking-widest text-gold-light font-bold block mb-1">Nom complet *</label>
               <input id="rsvp-name" required type="text" placeholder="Votre nom" class="w-full form-input py-1.5 px-3 rounded-xl text-charcoal font-sans text-xs"/>
             </div>
 
             <div>
-              <label for="rsvp-email" class="font-sans text-[9px] uppercase tracking-widest text-gold-dark font-bold block mb-1">Adresse e-mail</label>
+              <label for="rsvp-email" class="font-sans text-[9px] uppercase tracking-widest text-gold-light font-bold block mb-1">Adresse e-mail</label>
               <input id="rsvp-email" type="email" placeholder="nom@domaine.com" class="w-full form-input py-1.5 px-3 rounded-xl text-charcoal font-sans text-xs"/>
             </div>
 
             <div>
-              <label for="rsvp-message" class="font-sans text-[9px] uppercase tracking-widest text-gold-dark font-bold block mb-1">Vœux & Conseils ♥</label>
+              <label for="rsvp-message" class="font-sans text-[9px] uppercase tracking-widest text-gold-light font-bold block mb-1">Vœux & Conseils ♥</label>
               <textarea id="rsvp-message" rows="2.5" placeholder="Partagez un vœu chaleureux, un conseil de mariage..." class="w-full form-input py-1.5 px-3 rounded-xl text-charcoal font-sans text-xs resize-none"></textarea>
             </div>
 
-            <button type="submit" id="submit-btn" class="w-full bg-[#322d29] text-white font-sans text-[9px] font-bold uppercase tracking-widest py-2.5 rounded-xl hover:bg-gold-dark active:scale-95 transition-all shadow-sm flex items-center justify-center gap-1.5">
+            <button type="submit" id="submit-btn" class="w-full bg-gold text-[#2d362e] hover:bg-gold-light font-sans text-[9px] font-bold uppercase tracking-widest py-3 rounded-xl active:scale-95 transition-all shadow-sm flex items-center justify-center gap-1.5">
               <span>Confirmer & Envoyer</span>
               <span class="material-symbols-outlined text-[13px]">send</span>
             </button>
           </form>
 
           <!-- Response Message -->
-          <div id="rsvp-response" class="hidden mt-3 p-2.5 rounded-xl bg-gold/10 border border-gold/30 text-gold-dark font-sans text-xs font-light">
+          <div id="rsvp-response" class="hidden mt-4 p-3 rounded-xl bg-gold/10 border border-gold/30 text-gold-light font-sans text-xs font-light">
           </div>
         </div>
 
@@ -275,7 +289,7 @@
     </div>
 
     <!-- footer info -->
-    <footer class="pt-10 pb-8 bg-[#f5efeb] text-gray-500 text-center relative">
+    <footer class="pt-10 pb-8 bg-[#f4f3ef] text-gray-500 text-center relative">
       <div class="max-w-md mx-auto px-6">
         <h3 class="font-script text-gold-dark text-3xl mb-1">Merci</h3>
         <p class="font-serif italic text-[11px] mb-6">Nous avons hâte de célébrer avec vous !</p>

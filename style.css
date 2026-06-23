@@ -2,12 +2,12 @@
   --gold: #c5a880; /* Premium Champagne Gold */
   --gold-light: #e2d1b9;
   --gold-dark: #997c55;
-  --sand-bg: #f5efeb; /* Soft Warm Sand main background */
+  --sand-bg: #f4f3ef; /* Premium Off-White Paper Cardstock background */
   --white-card: #ffffff; /* Bento Grid primary cards */
-  --accent-card: #eae3d2; /* Bento Grid secondary accent cards */
-  --taupe-text: #322d29; /* Deep charcoal/taupe soft text */
-  --charcoal: #322d29;
-  --text-light: #f5f0e6;
+  --accent-card: #3d4a3e; /* Deep Sophisticated Dark Olive Green cards */
+  --taupe-text: #2d362e; /* Very dark charcoal/olive text for light cards */
+  --charcoal: #2d362e;
+  --text-light: #f5f0e6; /* Light text for dark olive green cards */
 }
 
 body {
@@ -47,9 +47,9 @@ body {
 }
 
 .wax-seal {
-  background: radial-gradient(circle, #e6b800 0%, #b38600 70%, #806000 100%);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.4);
-  border: 2px solid #997300;
+  background: #ffffff;
+  box-shadow: 0 4px 15px rgba(50, 45, 41, 0.15);
+  border: 1.5px solid var(--gold);
   cursor: pointer;
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
   position: absolute;
@@ -62,14 +62,14 @@ body {
 
 .wax-seal:hover {
   transform: translate(-50%, -50%) scale(1.1);
-  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+  box-shadow: 0 8px 25px rgba(197, 168, 128, 0.3);
 }
 
 .wax-seal::after {
   content: '';
   position: absolute;
   top: 0; left: -150%; width: 300%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
   transform: skewX(-20deg);
   animation: shine 3s infinite;
 }
@@ -260,7 +260,7 @@ body {
 /* Form Input Styling */
 .form-input {
   border: 1px solid rgba(197, 168, 128, 0.3);
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.95);
   transition: all 0.3s ease;
   color: var(--charcoal);
 }
@@ -300,14 +300,14 @@ body {
 /* Drag and Drop File Upload Styling */
 .upload-zone {
   border: 1.5px dashed rgba(197, 168, 128, 0.3);
-  background-color: rgba(234, 227, 210, 0.3);
+  background-color: rgba(244, 243, 239, 0.4);
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .upload-zone:hover, .upload-zone.drag-over {
   border-color: var(--gold);
-  background-color: rgba(234, 227, 210, 0.5);
+  background-color: rgba(244, 243, 239, 0.7);
 }
 
 .upload-progress-bar {
@@ -366,7 +366,7 @@ body {
   }
 }
 
-/* Mobile Fullscreen Menu Styles */
+/* Mobile Fullscreen Menu Styles (Keep as fallback reference) */
 #mobile-menu {
   opacity: 0;
   pointer-events: none;
@@ -450,13 +450,13 @@ body {
   }
 }
 
-/* White Bento Card (redefines cream card class to maintain class structure) */
+/* White Bento Card */
 .card-premium-cream {
   background-color: var(--white-card);
   color: var(--taupe-text);
   border: 1px solid rgba(197, 168, 128, 0.22);
   border-radius: 28px;
-  box-shadow: 0 10px 30px rgba(50, 45, 41, 0.04);
+  box-shadow: 0 10px 30px rgba(50, 45, 41, 0.03);
   padding: 1.75rem;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
   position: relative;
@@ -465,16 +465,16 @@ body {
 
 .card-premium-cream:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 36px rgba(50, 45, 41, 0.08), 0 0 0 1px rgba(197, 168, 128, 0.4);
+  box-shadow: 0 16px 36px rgba(50, 45, 41, 0.06), 0 0 0 1px rgba(197, 168, 128, 0.4);
 }
 
-/* Muted Accent Card (redefines dark card class to warm accent colors) */
+/* Solid Dark Olive Green Accent Bento Card */
 .card-premium-dark {
   background-color: var(--accent-card);
-  color: var(--taupe-text);
-  border: 1px solid rgba(197, 168, 128, 0.3);
+  color: var(--text-light);
+  border: 1px solid rgba(197, 168, 128, 0.25);
   border-radius: 28px;
-  box-shadow: 0 10px 30px rgba(50, 45, 41, 0.04);
+  box-shadow: 0 10px 30px rgba(50, 45, 41, 0.05);
   padding: 1.75rem;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
   position: relative;
@@ -483,7 +483,7 @@ body {
 
 .card-premium-dark:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 36px rgba(50, 45, 41, 0.08), 0 0 0 1px rgba(197, 168, 128, 0.4);
+  box-shadow: 0 16px 36px rgba(50, 45, 41, 0.1), 0 0 0 1px rgba(197, 168, 128, 0.4);
 }
 
 /* Scroll reveal cards state */
