@@ -58,5 +58,25 @@
     "dietary": "",
     "message": "This layout looks absolutely perfect and clean!",
     "submittedAt": "2026-06-23T12:11:01.742Z"
+  },
+  {
+    "id": "1782226982812",
+    "name": "Visiteur Test",
+    "email": "test@mariage.fr",
+    "attendance": "attending",
+    "guests": 0,
+    "dietary": "",
+    "message": "FFelicitations aux futurs maries !",
+    "submittedAt": "2026-06-23T15:03:02.812Z"
+  },
+  {
+    "id": "1782228257436",
+    "name": "Bento Visiteur",
+    "email": "bento@mariage.fr",
+    "attendance": "attending",
+    "guests": 0,
+    "dietary": "",
+    "message": "Le design olive fonce et beige papier est sublime !",
+    "submittedAt": "2026-06-23T15:24:17.436Z"
   }
 ]
