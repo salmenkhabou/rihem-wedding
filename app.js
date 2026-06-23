@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
       </svg>
-      <span>Sending...</span>
+      <span>Envoi en cours...</span>
     `;
 
     const rsvpData = {
@@ -166,8 +166,8 @@ document.addEventListener('DOMContentLoaded', () => {
       rsvpResponse.style.color = '#997c55';
       
       rsvpResponse.innerHTML = `
-        <h4 class="font-serif text-lg font-semibold mb-1">Message Sent!</h4>
-        <p class="font-sans text-xs">Thank you, ${rsvpData.name}! Your attendance has been confirmed and note has been saved.</p>
+        <h4 class="font-serif text-lg font-semibold mb-1 text-gold-dark">Message Envoyé !</h4>
+        <p class="font-sans text-xs font-medium">Merci, ${rsvpData.name} ! Votre présence a été confirmée et votre note a été enregistrée.</p>
       `;
       
       rsvpForm.style.display = 'none';
@@ -179,8 +179,8 @@ document.addEventListener('DOMContentLoaded', () => {
       rsvpResponse.style.borderColor = '#ef4444';
       rsvpResponse.style.color = '#ef4444';
       rsvpResponse.innerHTML = `
-        <h4 class="font-serif text-lg font-semibold mb-1">Submission Failed</h4>
-        <p class="font-sans text-xs">There was a connection issue saving your RSVP. Please try again or contact us directly.</p>
+        <h4 class="font-serif text-lg font-semibold mb-1">Échec de l'envoi</h4>
+        <p class="font-sans text-xs">Un problème de connexion est survenu lors de l'enregistrement. Veuillez réessayer ou nous contacter directement.</p>
       `;
       
       submitBtn.disabled = false;
@@ -256,17 +256,17 @@ document.addEventListener('DOMContentLoaded', () => {
   function uploadFile(file) {
     // Validate file is an image
     if (!file.type.startsWith('image/')) {
-      showUploadStatus('Please select an image file (JPG, PNG, WEBP, GIF).', 'error');
+      showUploadStatus('Veuillez sélectionner un fichier image (JPG, PNG, WEBP, GIF).', 'error');
       return;
     }
 
     // Check if configuration is set
     if (APPS_SCRIPT_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE") {
-      showUploadStatus('Please deploy your Google Apps Script first and set the APPS_SCRIPT_URL in app.js.', 'error');
+      showUploadStatus('Veuillez d\'abord configurer votre Google Apps Script.', 'error');
       return;
     }
 
-    // Display progress UI (mocked visually because FileReader does not provide step events)
+    // Display progress UI
     filenameText.textContent = file.name;
     progressBar.style.width = '20%';
     percentageText.textContent = '20%';
@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch(APPS_SCRIPT_URL, {
         method: 'POST',
         headers: {
-          'Content-Type': 'text/plain;charset=utf-8' // Send as text/plain to avoid preflight CORS options checks
+          'Content-Type': 'text/plain;charset=utf-8'
         },
         body: JSON.stringify(payload)
       })
@@ -301,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
         progressBar.style.width = '90%';
         percentageText.textContent = '90%';
         if (!res.ok) {
-          throw new Error('Server returned error status ' + res.status);
+          throw new Error('Le serveur a retourné un statut d\'erreur ' + res.status);
         }
         return res.json();
       })
@@ -310,9 +310,9 @@ document.addEventListener('DOMContentLoaded', () => {
         percentageText.textContent = '100%';
 
         if (data.success) {
-          showUploadStatus('Photo uploaded directly to Google Drive successfully!', 'success');
+          showUploadStatus('Photo téléversée directement sur Google Drive avec succès !', 'success');
         } else {
-          showUploadStatus('Google Drive upload error: ' + data.error, 'error');
+          showUploadStatus('Erreur de téléversement Google Drive : ' + data.error, 'error');
         }
 
         setTimeout(() => {
@@ -321,13 +321,13 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(error => {
         console.error('Error uploading to Drive:', error);
-        showUploadStatus('Failed uploading directly to Drive. Connection error.', 'error');
+        showUploadStatus('Échec du téléversement. Erreur de connexion.', 'error');
         progressContainer.classList.add('hidden');
       });
     };
 
     reader.onerror = function() {
-      showUploadStatus('Failed reading file data.', 'error');
+      showUploadStatus('Échec de la lecture des données du fichier.', 'error');
       progressContainer.classList.add('hidden');
     };
 
@@ -354,10 +354,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const siteUrl = 'https://rihem-mohamed-wedding.netlify.app/';
       
       function showSuccess() {
-        copyBtnText.textContent = 'Link Copied!';
+        copyBtnText.textContent = 'Lien copié !';
         copyLinkBtn.classList.add('bg-gold/40');
         setTimeout(() => {
-          copyBtnText.textContent = 'Share Invite Link';
+          copyBtnText.textContent = 'Partager le lien';
           copyLinkBtn.classList.remove('bg-gold/40');
         }, 2000);
       }
@@ -365,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
       function fallbackCopyText(text) {
         const textArea = document.createElement("textarea");
         textArea.value = text;
-        textArea.style.position = "fixed"; // Avoid scrolling to bottom in some browsers
+        textArea.style.position = "fixed";
         document.body.appendChild(textArea);
         textArea.focus();
         textArea.select();
@@ -395,34 +395,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 9. Mobile Menu Toggle Controller (Not used but kept as safe reference)
-  if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', () => {
-      const isActive = mobileMenu.classList.toggle('active');
-      if (isActive) {
-        menuIcon.textContent = 'close';
-        menuIcon.classList.add('text-gold');
-      } else {
-        menuIcon.textContent = 'menu';
-        menuIcon.classList.remove('text-gold');
-      }
-    });
-
-    // Close menu when clicking navigation links
-    mobileNavLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        menuIcon.textContent = 'menu';
-        menuIcon.classList.remove('text-gold');
-      });
-    });
-  }
-
   // 10. Lightbox Modal Controller
   function openLightbox(photoUrl) {
     if (lightboxImg && lightboxModal) {
       lightboxImg.src = photoUrl;
-      lightboxImg.alt = "Wedding photo view";
+      lightboxImg.alt = "Agrandissement";
       lightboxModal.classList.add('active');
     }
   }
@@ -438,7 +415,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (lightboxModal) {
-    // Close lightbox on clicking the backdrop
     lightboxModal.addEventListener('click', (e) => {
       if (e.target === lightboxModal) {
         closeLightbox();
@@ -480,65 +456,4 @@ document.addEventListener('DOMContentLoaded', () => {
   revealCards.forEach(card => {
     cardObserver.observe(card);
   });
-
-  // 12. Song Suggestion form submit handler
-  const songForm = document.getElementById('song-form');
-  const songResponse = document.getElementById('song-response');
-  const songSubmitBtn = document.getElementById('song-submit-btn');
-
-  if (songForm) {
-    songForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const originalBtnText = songSubmitBtn.textContent;
-      songSubmitBtn.disabled = true;
-      songSubmitBtn.textContent = 'Enviando...';
-
-      const songData = {
-        title: document.getElementById('song-title').value,
-        name: document.getElementById('song-name').value,
-        artist: ''
-      };
-
-      // Split title & artist if separator exists
-      const separators = ['-', 'by', 'por'];
-      for (const sep of separators) {
-        const sepIndex = songData.title.toLowerCase().indexOf(sep);
-        if (sepIndex !== -1) {
-          songData.artist = songData.title.substring(sepIndex + sep.length).trim();
-          songData.title = songData.title.substring(0, sepIndex).trim();
-          break;
-        }
-      }
-
-      fetch('/api/song', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(songData)
-      })
-      .then(res => {
-        if (!res.ok) throw new Error('Song submission request failed');
-        return res.json();
-      })
-      .then(data => {
-        songResponse.classList.remove('hidden');
-        songResponse.textContent = 'Song suggestion saved! Thank you.';
-        songForm.reset();
-        setTimeout(() => {
-          songResponse.classList.add('hidden');
-        }, 4000);
-      })
-      .catch(err => {
-        console.error(err);
-        songResponse.classList.remove('hidden');
-        songResponse.textContent = 'Connection error. Please try again.';
-      })
-      .finally(() => {
-        songSubmitBtn.disabled = false;
-        songSubmitBtn.textContent = originalBtnText;
-      });
-    });
-  }
 });
