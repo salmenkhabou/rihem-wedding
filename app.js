@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxModal = document.getElementById('lightbox-modal');
   const lightboxClose = document.getElementById('lightbox-close');
   const lightboxImg = document.getElementById('lightbox-img');
-  // Cute Message Elements are using existing IDs to maintain server compatibility.
 
   // Photo Hub Elements
   const uploadZone = document.getElementById('upload-zone');
@@ -48,8 +47,18 @@ document.addEventListener('DOMContentLoaded', () => {
       envelopeWrapper.style.pointerEvents = 'none';
       mainContent.classList.add('visible');
       
-      // Load default showcase gallery items
+      // Load default showcase gallery items (safely check first)
       loadGallery();
+
+      // Trigger scroll reveals for initial elements
+      setTimeout(() => {
+        revealCards.forEach(card => {
+          const rect = card.getBoundingClientRect();
+          if (rect.top < window.innerHeight) {
+            card.classList.add('revealed');
+          }
+        });
+      }, 100);
 
       setTimeout(() => {
         envelopeWrapper.style.display = 'none';
@@ -65,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(() => {
         isPlaying = true;
         musicIcon.textContent = 'pause';
-        musicToggle.classList.add('animate-pulse');
+        musicToggle.classList.add('audio-playing');
       })
       .catch(err => {
         console.log("Audio autoplay prevented: ", err);
@@ -77,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
       bgMusic.pause();
       isPlaying = false;
       musicIcon.textContent = 'music_note';
-      musicToggle.classList.remove('animate-pulse');
+      musicToggle.classList.remove('audio-playing');
     } else {
       playMusic();
     }
@@ -121,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const originalBtnContent = submitBtn.innerHTML;
     submitBtn.disabled = true;
     submitBtn.innerHTML = `
-      <svg class="animate-spin h-4 w-4 text-emerald" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <svg class="animate-spin h-4 w-4 text-charcoal" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
       </svg>
@@ -152,13 +161,13 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .then(data => {
       rsvpResponse.classList.remove('hidden');
-      rsvpResponse.style.backgroundColor = 'rgba(212, 175, 55, 0.1)';
-      rsvpResponse.style.borderColor = '#d4af37';
-      rsvpResponse.style.color = '#f3e5ab';
+      rsvpResponse.style.backgroundColor = 'rgba(197, 168, 128, 0.1)';
+      rsvpResponse.style.borderColor = '#c5a880';
+      rsvpResponse.style.color = '#997c55';
       
       rsvpResponse.innerHTML = `
-        <h4 class="font-serif text-lg font-semibold mb-1 text-gold-light">Message Sent!</h4>
-        <p class="font-sans text-xs">Thank you, ${rsvpData.name}! Your sweet message has been saved. We are so glad to have your warm wishes!</p>
+        <h4 class="font-serif text-lg font-semibold mb-1">Message Sent!</h4>
+        <p class="font-sans text-xs">Thank you, ${rsvpData.name}! Your attendance has been confirmed and note has been saved.</p>
       `;
       
       rsvpForm.style.display = 'none';
@@ -168,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
       rsvpResponse.classList.remove('hidden');
       rsvpResponse.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
       rsvpResponse.style.borderColor = '#ef4444';
-      rsvpResponse.style.color = '#fca5a5';
+      rsvpResponse.style.color = '#ef4444';
       rsvpResponse.innerHTML = `
         <h4 class="font-serif text-lg font-semibold mb-1">Submission Failed</h4>
         <p class="font-sans text-xs">There was a connection issue saving your RSVP. Please try again or contact us directly.</p>
@@ -181,6 +190,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 6. Showcase Gallery (Renders only static wedding showcase photos)
   function loadGallery() {
+    if (!galleryGrid) return;
+    
     const DEFAULT_PHOTOS = [
       'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600',
       'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=600',
@@ -189,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
     galleryGrid.innerHTML = '';
     DEFAULT_PHOTOS.forEach(photoUrl => {
       const card = document.createElement('div');
-      card.className = 'overflow-hidden rounded-lg border border-gold/30 shadow-md aspect-square relative group bg-emerald/10 cursor-pointer';
+      card.className = 'overflow-hidden rounded-lg border border-gold/30 shadow-md aspect-square relative group bg-[#eae3d2]/20 cursor-pointer';
       
       const img = document.createElement('div');
       img.className = 'absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500';
@@ -300,7 +311,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (data.success) {
           showUploadStatus('Photo uploaded directly to Google Drive successfully!', 'success');
-          // Note: We do NOT append uploaded photos to the website gallery as requested.
         } else {
           showUploadStatus('Google Drive upload error: ' + data.error, 'error');
         }
@@ -347,7 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
         copyBtnText.textContent = 'Link Copied!';
         copyLinkBtn.classList.add('bg-gold/40');
         setTimeout(() => {
-          copyBtnText.textContent = 'Copy Website Link';
+          copyBtnText.textContent = 'Share Invite Link';
           copyLinkBtn.classList.remove('bg-gold/40');
         }, 2000);
       }
@@ -385,7 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 9. Mobile Menu Toggle Controller
+  // 9. Mobile Menu Toggle Controller (Not used but kept as safe reference)
   if (mobileMenuBtn && mobileMenu) {
     mobileMenuBtn.addEventListener('click', () => {
       const isActive = mobileMenu.classList.toggle('active');
@@ -449,4 +459,86 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+
+  // 11. Scroll Reveal Intersection Observer
+  const revealCards = document.querySelectorAll('.reveal-card');
+  const observerOptions = {
+    root: null,
+    threshold: 0.08,
+    rootMargin: '0px 0px -40px 0px'
+  };
+
+  const cardObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  revealCards.forEach(card => {
+    cardObserver.observe(card);
+  });
+
+  // 12. Song Suggestion form submit handler
+  const songForm = document.getElementById('song-form');
+  const songResponse = document.getElementById('song-response');
+  const songSubmitBtn = document.getElementById('song-submit-btn');
+
+  if (songForm) {
+    songForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const originalBtnText = songSubmitBtn.textContent;
+      songSubmitBtn.disabled = true;
+      songSubmitBtn.textContent = 'Enviando...';
+
+      const songData = {
+        title: document.getElementById('song-title').value,
+        name: document.getElementById('song-name').value,
+        artist: ''
+      };
+
+      // Split title & artist if separator exists
+      const separators = ['-', 'by', 'por'];
+      for (const sep of separators) {
+        const sepIndex = songData.title.toLowerCase().indexOf(sep);
+        if (sepIndex !== -1) {
+          songData.artist = songData.title.substring(sepIndex + sep.length).trim();
+          songData.title = songData.title.substring(0, sepIndex).trim();
+          break;
+        }
+      }
+
+      fetch('/api/song', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(songData)
+      })
+      .then(res => {
+        if (!res.ok) throw new Error('Song submission request failed');
+        return res.json();
+      })
+      .then(data => {
+        songResponse.classList.remove('hidden');
+        songResponse.textContent = 'Song suggestion saved! Thank you.';
+        songForm.reset();
+        setTimeout(() => {
+          songResponse.classList.add('hidden');
+        }, 4000);
+      })
+      .catch(err => {
+        console.error(err);
+        songResponse.classList.remove('hidden');
+        songResponse.textContent = 'Connection error. Please try again.';
+      })
+      .finally(() => {
+        songSubmitBtn.disabled = false;
+        songSubmitBtn.textContent = originalBtnText;
+      });
+    });
+  }
 });

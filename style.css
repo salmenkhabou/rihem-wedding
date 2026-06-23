@@ -1,19 +1,38 @@
 :root {
-  --gold: #d4af37;
-  --gold-light: #f3e5ab;
-  --emerald: #0b3d2c;
-  --emerald-dark: #052319;
-  --cream: #faf7f2;
-  --charcoal: #2c2c2c;
+  --gold: #c5a880; /* Premium Champagne Gold */
+  --gold-light: #e2d1b9;
+  --gold-dark: #997c55;
+  --sand-bg: #f5efeb; /* Soft Warm Sand main background */
+  --white-card: #ffffff; /* Bento Grid primary cards */
+  --accent-card: #eae3d2; /* Bento Grid secondary accent cards */
+  --taupe-text: #322d29; /* Deep charcoal/taupe soft text */
+  --charcoal: #322d29;
+  --text-light: #f5f0e6;
 }
 
 body {
   font-family: 'Playfair Display', serif;
-  background-color: var(--cream);
-  color: var(--charcoal);
+  background-color: var(--sand-bg);
+  color: var(--taupe-text);
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--sand-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold-dark);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
 }
 
 /* Base style for title scripts */
@@ -23,12 +42,8 @@ body {
 
 /* Wax Seal Button Shimmer */
 @keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 .wax-seal {
@@ -65,12 +80,12 @@ body {
   100% { left: 150%; }
 }
 
-/* Interactive Envelope Styling */
+/* Interactive Envelope Styling (Light Cream/Beige Theme) */
 #envelope-wrapper {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background-color: var(--emerald-dark);
+  background-color: #e5ded4; /* Soft neutral overlay back */
   z-index: 1000;
   display: flex;
   justify-content: center;
@@ -83,9 +98,9 @@ body {
   position: relative;
   width: 450px;
   height: 300px;
-  background-color: #083325;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-  perspective: 1000px;
+  background-color: #eae3d2; /* Inner liner gold-cream */
+  box-shadow: 0 20px 50px rgba(50, 45, 41, 0.3);
+  perspective: 1500px;
   border-radius: 0 0 10px 10px;
 }
 
@@ -104,7 +119,7 @@ body {
   width: 0; height: 0;
   border-left: 225px solid transparent;
   border-right: 225px solid transparent;
-  border-top: 150px solid var(--emerald);
+  border-top: 150px solid #eae3d2; /* Warm beige flap */
   transform-origin: top;
   transition: transform 0.8s ease-in-out;
   z-index: 5;
@@ -123,9 +138,9 @@ body {
   position: absolute;
   top: 0; left: 0;
   width: 0; height: 0;
-  border-left: 225px solid rgba(8, 51, 37, 0.95);
+  border-left: 225px solid #ebd9cc;
   border-top: 150px solid transparent;
-  border-bottom: 150px solid rgba(8, 51, 37, 0.95);
+  border-bottom: 150px solid #ebd9cc;
   z-index: 4;
 }
 
@@ -133,9 +148,9 @@ body {
   position: absolute;
   top: 0; right: 0;
   width: 0; height: 0;
-  border-right: 225px solid rgba(8, 51, 37, 0.95);
+  border-right: 225px solid #ebd9cc;
   border-top: 150px solid transparent;
-  border-bottom: 150px solid rgba(8, 51, 37, 0.95);
+  border-bottom: 150px solid #ebd9cc;
   z-index: 4;
 }
 
@@ -159,7 +174,7 @@ body {
   width: 0; height: 0;
   border-left: 225px solid transparent;
   border-right: 225px solid transparent;
-  border-bottom: 150px solid #06261c;
+  border-bottom: 150px solid #dfcfc2; /* Flap ground beige */
   z-index: 4;
 }
 
@@ -177,18 +192,14 @@ body {
   top: 15px; left: 20px;
   width: 410px;
   height: 270px;
-  background-color: var(--cream);
-  border: 2px solid var(--gold);
+  background-color: var(--white-card);
+  border: 1.5px solid var(--gold);
   border-radius: 8px;
   z-index: 3;
-  transition: transform 1s ease-in-out;
-  padding: 20px;
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  padding: 15px;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
 }
 
 @media (max-width: 500px) {
@@ -203,17 +214,17 @@ body {
 /* Animation states when open is clicked */
 .envelope.open::before {
   transform: rotateX(180deg);
-  z-index: 1; /* Hide under card when flipped back */
+  z-index: 1;
 }
 
 .envelope.open .envelope-card {
-  transform: translateY(-130px);
-  z-index: 6; /* Bring card to the top */
+  transform: translateY(-150px);
+  z-index: 6;
 }
 
 @media (max-width: 500px) {
   .envelope.open .envelope-card {
-    transform: translateY(-90px);
+    transform: translateY(-100px);
   }
 }
 
@@ -246,65 +257,57 @@ body {
   flex-grow: 1;
 }
 
-/* Glassmorphism containers */
-.glass-panel {
-  background: rgba(250, 247, 242, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-}
-
-/* Form Styling */
+/* Form Input Styling */
 .form-input {
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(197, 168, 128, 0.3);
+  background-color: rgba(255, 255, 255, 0.9);
   transition: all 0.3s ease;
+  color: var(--charcoal);
 }
 
 .form-input:focus {
   outline: none;
-  border-color: var(--gold);
-  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+  border-color: var(--gold-dark);
+  box-shadow: 0 0 0 2px rgba(197, 168, 128, 0.15);
 }
 
 /* Custom animations */
 .animate-float {
-  animation: float 4s ease-in-out infinite;
+  animation: float 5s ease-in-out infinite;
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-10px); }
 }
 
 .timeline-line::before {
   content: '';
   position: absolute;
   top: 0; bottom: 0; left: 50%;
-  width: 2px;
-  background: linear-gradient(180deg, var(--gold-light), var(--gold), var(--gold-light));
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--gold), transparent);
   transform: translateX(-50%);
 }
 
 @media (max-width: 768px) {
   .timeline-line::before {
-    left: 31px;
+    left: 21px;
     transform: none;
   }
 }
 
 /* Drag and Drop File Upload Styling */
 .upload-zone {
-  border: 2px dashed rgba(214, 175, 55, 0.4);
-  background-color: rgba(8, 51, 37, 0.3);
+  border: 1.5px dashed rgba(197, 168, 128, 0.3);
+  background-color: rgba(234, 227, 210, 0.3);
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .upload-zone:hover, .upload-zone.drag-over {
   border-color: var(--gold);
-  background-color: rgba(8, 51, 37, 0.6);
-  transform: scale(1.01);
+  background-color: rgba(234, 227, 210, 0.5);
 }
 
 .upload-progress-bar {
@@ -319,19 +322,10 @@ body {
 .qr-frame {
   position: relative;
   background: #ffffff;
-  padding: 12px;
+  padding: 10px;
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  border: 3px solid var(--gold);
-}
-
-.qr-frame::before {
-  content: "";
-  position: absolute;
-  top: -6px; left: -6px; right: -6px; bottom: -6px;
-  border: 1px solid rgba(214, 175, 55, 0.3);
-  border-radius: 16px;
-  pointer-events: none;
+  box-shadow: 0 8px 20px rgba(50, 45, 41, 0.05);
+  border: 2px solid var(--gold);
 }
 
 /* Extra Envelope Responsiveness for screens under 360px */
@@ -392,6 +386,7 @@ body {
   position: relative;
   display: inline-block;
   padding: 0.5rem 0;
+  color: var(--taupe-text) !important;
 }
 
 .mobile-nav-link::after {
@@ -433,3 +428,128 @@ body {
   transform: scale(1);
 }
 
+/* PREMIUM COLLAGE / DASHBOARD CARD SYSTEM */
+.dashboard-container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 4rem;
+}
+
+.collage-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 520px) {
+  .collage-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .col-span-2 {
+    grid-column: span 2;
+  }
+}
+
+/* White Bento Card (redefines cream card class to maintain class structure) */
+.card-premium-cream {
+  background-color: var(--white-card);
+  color: var(--taupe-text);
+  border: 1px solid rgba(197, 168, 128, 0.22);
+  border-radius: 28px;
+  box-shadow: 0 10px 30px rgba(50, 45, 41, 0.04);
+  padding: 1.75rem;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-premium-cream:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(50, 45, 41, 0.08), 0 0 0 1px rgba(197, 168, 128, 0.4);
+}
+
+/* Muted Accent Card (redefines dark card class to warm accent colors) */
+.card-premium-dark {
+  background-color: var(--accent-card);
+  color: var(--taupe-text);
+  border: 1px solid rgba(197, 168, 128, 0.3);
+  border-radius: 28px;
+  box-shadow: 0 10px 30px rgba(50, 45, 41, 0.04);
+  padding: 1.75rem;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-premium-dark:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(50, 45, 41, 0.08), 0 0 0 1px rgba(197, 168, 128, 0.4);
+}
+
+/* Scroll reveal cards state */
+.reveal-card {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-card.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Visual color chips */
+.palette-chip {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: default;
+}
+
+.palette-chip:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Copy text buttons */
+.copy-btn {
+  background-color: var(--sand-bg);
+  border: 1px solid rgba(197, 168, 128, 0.35);
+  color: var(--gold-dark);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.copy-btn:hover {
+  background-color: var(--white-card);
+  border-color: var(--gold);
+  color: var(--gold-dark);
+  box-shadow: 0 2px 6px rgba(197, 168, 128, 0.15);
+}
+
+.copy-btn:active {
+  transform: scale(0.96);
+}
+
+/* Spinning Record Player Widget style */
+@keyframes spin-record {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.audio-playing {
+  animation: spin-record 8s linear infinite;
+  box-shadow: 0 0 15px rgba(197, 168, 128, 0.4);
+}

@@ -22,16 +22,16 @@
         extend: {
           colors: {
             gold: {
-              DEFAULT: '#d4af37',
-              light: '#f3e5ab',
-              dark: '#aa8010',
+              DEFAULT: '#c5a880', /* Champagne gold */
+              light: '#e2d1b9',
+              dark: '#997c55',
             },
             emerald: {
-              light: '#0b3d2c',
-              DEFAULT: '#083325',
-              dark: '#052319',
+              light: '#eae3d2', /* Warm beige sand */
+              DEFAULT: '#f5efeb', /* Main background warm sand */
+              dark: '#cbd4cb', /* Sage border/accent */
             },
-            cream: '#faf7f2',
+            cream: '#ffffff', /* Pure white cards */
           },
           fontFamily: {
             serif: ['Playfair Display', 'serif'],
@@ -45,14 +45,14 @@
   
   <link href="style.css" rel="stylesheet"/>
 </head>
-<body class="bg-cream selection:bg-gold/30">
+<body class="bg-[#f5efeb] text-[#322d29] selection:bg-gold/30">
 
-  <!-- Interactive 3D Envelope Wrapper -->
+  <!-- Interactive 3D Envelope Wrapper (Warm Beige Theme) -->
   <div id="envelope-wrapper" class="flex flex-col items-center justify-center">
-    <div class="text-center mb-8 text-cream px-4 max-w-sm animate-fade-in">
+    <div class="text-center mb-8 text-[#322d29] px-4 max-w-sm animate-fade-in">
       <span class="material-symbols-outlined text-gold text-5xl mb-2 animate-bounce">mail</span>
-      <h2 class="font-serif text-3xl font-light tracking-wide text-gold-light mb-1">A Special Invitation</h2>
-      <p class="font-sans text-xs uppercase tracking-widest text-gray-300">You are warmly invited to share in our joy</p>
+      <h2 class="font-serif text-3xl font-light tracking-wide text-gold-dark mb-1">Our Invitation</h2>
+      <p class="font-sans text-xs uppercase tracking-widest text-gray-500">We are getting married!</p>
     </div>
 
     <!-- Envelope Container -->
@@ -62,409 +62,259 @@
       <div class="envelope-bottom"></div>
       
       <!-- Wax Seal -->
-      <button id="wax-seal-btn" class="wax-seal w-16 h-16 rounded-full flex flex-col items-center justify-center text-white select-none max-[500px]:w-14 max-[500px]:h-14">
+      <button id="wax-seal-btn" class="wax-seal w-16 h-16 rounded-full flex flex-col items-center justify-center text-white select-none max-[500px]:w-14 max-[500px]:h-14" aria-label="Open invitation envelope">
         <span class="font-script text-2xl font-bold leading-none text-gold-light">M&R</span>
         <span class="text-[7px] uppercase tracking-wider font-sans font-semibold text-white/90">Open</span>
       </button>
 
-      <!-- Invitation Card inside Envelope -->
-      <div class="envelope-card">
-        <h3 class="font-script text-gold text-4xl mb-1">Mohamed & Rihem</h3>
-        <p class="font-sans text-[10px] uppercase tracking-widest text-emerald-light font-semibold mb-2">Are Getting Married</p>
-        <div class="w-12 h-[1px] bg-gold my-2"></div>
-        <p class="font-serif text-xs italic text-gray-600 mb-1">Save the Date</p>
-        <p class="font-sans text-xs tracking-wider text-gray-800 font-medium">JULY 11, 2026</p>
-        <p class="font-sans text-[9px] text-gray-500 uppercase tracking-wide mt-2">Aurora • Sfax, Tunisia</p>
+      <!-- Invitation Card inside Envelope (Landscape Split Layout) -->
+      <div class="envelope-card flex flex-row overflow-hidden p-0 bg-cream">
+        <!-- Card Left Image -->
+        <div class="w-[38%] h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400');"></div>
+        <!-- Card Right Details -->
+        <div class="w-[62%] h-full flex flex-col justify-center items-center text-center p-3 text-charcoal">
+          <h3 class="font-script text-gold text-2xl leading-none">Mohamed & Rihem</h3>
+          <p class="font-sans text-[8px] uppercase tracking-widest text-gold-dark font-semibold mt-1">Are Getting Married</p>
+          <div class="w-8 h-[1px] bg-gold my-1.5"></div>
+          <p class="font-serif text-[9px] italic text-gray-500">Save the Date</p>
+          <p class="font-sans text-[11px] font-semibold text-gray-800 tracking-wider">JULY 11, 2026</p>
+          <p class="font-sans text-[8px] text-gray-500 uppercase tracking-wide mt-1">Aurora • Sfax, Tunisia</p>
+        </div>
       </div>
     </div>
 
-    <div class="mt-12 text-cream/60 text-xs font-sans tracking-widest animate-pulse max-w-xs text-center">
+    <div class="mt-12 text-gray-600 text-xs font-sans tracking-widest animate-pulse max-w-xs text-center">
       Click on the gold wax seal to open the envelope
     </div>
   </div>
 
   <!-- Ambient Audio Player -->
   <div class="fixed bottom-6 right-6 z-50">
-    <button id="music-toggle" class="bg-emerald/90 border border-gold/40 hover:border-gold w-12 h-12 rounded-full flex items-center justify-center text-gold shadow-lg transition-all active:scale-95 duration-200">
+    <button id="music-toggle" class="bg-white border border-gold/40 hover:border-gold w-12 h-12 rounded-full flex items-center justify-center text-gold shadow-lg transition-all active:scale-95 duration-200" aria-label="Toggle background music">
       <span id="music-icon" class="material-symbols-outlined text-[24px]">music_note</span>
     </button>
     <audio id="bg-music" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"></audio>
   </div>
 
   <!-- Main Invitation Website Content -->
-  <main id="main-content" class="min-h-screen relative pb-16">
+  <main id="main-content" class="min-h-screen relative pb-16 pt-8">
     
-    <!-- Hero / Welcome Cover Section -->
-    <section class="min-h-screen flex flex-col justify-between items-center relative overflow-hidden bg-emerald text-cream py-16 px-4">
-      <!-- Background Image Overlay with Dimmer -->
-      <div class="absolute inset-0 bg-cover bg-center opacity-25 z-0 scale-105" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200');"></div>
+    <!-- Dashboard Bento Grid Container -->
+    <div class="dashboard-container space-y-5">
       
-      <!-- Decorative Borders -->
-      <div class="absolute inset-6 border border-gold/30 pointer-events-none z-10"></div>
-      <div class="absolute inset-8 border border-gold/15 pointer-events-none z-10"></div>
-
-      <!-- Top Header -->
-      <div class="text-center z-20 mt-8">
-        <p class="font-sans text-xs uppercase tracking-widest text-gold-light font-medium">Together with their families</p>
-      </div>
-
-      <!-- Middle Names -->
-      <div class="text-center z-20 my-auto py-8">
-        <h1 class="font-script text-gold-light text-5xl sm:text-7xl md:text-8xl drop-shadow-md mb-4 animate-float">Mohamed & Rihem</h1>
-        <p class="font-serif text-base sm:text-lg md:text-xl italic text-gray-200 font-light mb-8 max-w-md mx-auto px-4">
-          invite you to celebrate their wedding and a new beginning of love, laughter, and happiness
-        </p>
+      <!-- Card 1: Header Announcement & Countdown Card (White Card, Bento Main) -->
+      <section id="welcome-card" class="card-premium-cream reveal-card text-center flex flex-col items-center p-6 sm:p-8">
+        <p class="font-sans text-[9px] uppercase tracking-widest text-gold-dark font-bold mb-4">Together with their families</p>
         
-        <div class="premium-divider w-48 mx-auto">
-          <span class="material-symbols-outlined text-gold text-lg">favorite</span>
+        <!-- Large Portrait Image of the couple -->
+        <div class="w-full max-w-xs rounded-2xl overflow-hidden shadow-md border border-gold/20 aspect-[3/4] relative mb-6">
+          <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600');"></div>
         </div>
 
-        <div class="font-sans text-sm tracking-widest uppercase text-gold-light font-semibold mb-1">
-          Saturday, July 11, 2026
-        </div>
-        <div class="font-serif text-base sm:text-lg text-gray-300 italic">
-          At seven o'clock in the evening
-        </div>
-        <div class="font-sans text-xs tracking-wider text-gray-400 mt-2">
-          AURORA, SFAX
-        </div>
-      </div>
-
-      <!-- Countdown Timer & Bottom Scroll Cue -->
-      <div class="w-full max-w-lg mx-auto z-20 text-center flex flex-col items-center">
-        <!-- Countdown Container -->
-        <div class="grid grid-cols-4 gap-2 sm:gap-4 px-2 sm:px-4 py-3 bg-emerald-dark/70 border border-gold/30 rounded-lg backdrop-blur-sm w-full max-w-sm mb-6">
-          <div class="text-center border-r border-gold/20 last:border-none">
-            <span id="days" class="block font-serif text-2xl text-gold font-bold">00</span>
-            <span class="text-[9px] uppercase tracking-wider font-sans text-gray-300">Days</span>
-          </div>
-          <div class="text-center border-r border-gold/20 last:border-none">
-            <span id="hours" class="block font-serif text-2xl text-gold font-bold">00</span>
-            <span class="text-[9px] uppercase tracking-wider font-sans text-gray-300">Hours</span>
-          </div>
-          <div class="text-center border-r border-gold/20 last:border-none">
-            <span id="minutes" class="block font-serif text-2xl text-gold font-bold">00</span>
-            <span class="text-[9px] uppercase tracking-wider font-sans text-gray-300">Mins</span>
-          </div>
-          <div class="text-center last:border-none">
-            <span id="seconds" class="block font-serif text-2xl text-gold font-bold">00</span>
-            <span class="text-[9px] uppercase tracking-wider font-sans text-gray-300">Secs</span>
-          </div>
-        </div>
-
-        <!-- Scroll down indicator -->
-        <a href="#our-story" class="text-gold-light hover:text-white transition-colors flex flex-col items-center gap-1">
-          <span class="font-sans text-[10px] uppercase tracking-widest font-medium">Scroll to Discover</span>
-          <span class="material-symbols-outlined animate-bounce text-sm">keyboard_double_arrow_down</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- Navigation Header -->
-    <nav class="sticky top-0 bg-cream/90 backdrop-blur-md border-b border-gold/25 z-40 py-2.5 shadow-sm">
-      <div class="max-w-screen-md mx-auto flex flex-row justify-between items-center px-6">
-        <!-- Logo -->
-        <a href="#" class="flex items-center gap-2">
-          <img src="favicon.png" alt="Monogram Logo" class="w-8 h-8 rounded-full border border-gold/30 shadow-sm"/>
-          <span class="font-serif text-sm font-semibold tracking-wider text-emerald-light">M&R</span>
-        </a>
-        <!-- Links (Desktop View) -->
-        <div class="hidden md:flex gap-4 md:gap-6 items-center font-sans text-[10px] tracking-widest uppercase font-semibold text-emerald-light">
-          <a href="#our-story" class="hover:text-gold transition-colors">Our Story</a>
-          <a href="#schedule" class="hover:text-gold transition-colors">Schedule</a>
-          <a href="#share-moments" class="hover:text-gold transition-colors text-gold">Share Photos</a>
-          <a href="#gallery" class="hover:text-gold transition-colors">Gallery</a>
-          <a href="#cute-messages" class="hover:text-gold transition-colors">Cute Messages</a>
-        </div>
-        <!-- Hamburger Button (Mobile View) -->
-        <button id="mobile-menu-btn" class="md:hidden text-emerald hover:text-gold transition-colors focus:outline-none z-50 flex items-center justify-center">
-          <span id="menu-icon" class="material-symbols-outlined text-[28px]">menu</span>
-        </button>
-      </div>
-    </nav>
-
-    <!-- Mobile Fullscreen Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 bg-emerald-dark/98 z-40 flex flex-col items-center justify-center">
-      <!-- Elegant interior borders -->
-      <div class="absolute inset-4 border border-gold/20 pointer-events-none"></div>
-      <div class="absolute inset-6 border border-gold/10 pointer-events-none"></div>
-      <!-- Links list -->
-      <div class="flex flex-col items-center gap-6 text-center z-50">
-        <span class="material-symbols-outlined text-gold text-4xl mb-2">favorite</span>
-        <a href="#our-story" class="mobile-nav-link font-serif text-xl tracking-widest text-cream uppercase">Our Story</a>
-        <a href="#schedule" class="mobile-nav-link font-serif text-xl tracking-widest text-cream uppercase">Schedule</a>
-        <a href="#share-moments" class="mobile-nav-link font-serif text-xl tracking-widest text-gold uppercase">Share Photos</a>
-        <a href="#gallery" class="mobile-nav-link font-serif text-xl tracking-widest text-cream uppercase">Gallery</a>
-        <a href="#cute-messages" class="mobile-nav-link font-serif text-xl tracking-widest text-cream uppercase">Cute Messages</a>
-        <div class="w-12 h-[1px] bg-gold/30 my-4"></div>
-        <span class="font-script text-gold-light text-2xl">M&R</span>
-      </div>
-    </div>
-
-
-    <!-- Our Story Section -->
-    <section id="our-story" class="py-20 px-6 max-w-screen-md mx-auto text-center scroll-mt-20">
-      <span class="material-symbols-outlined text-gold text-4xl mb-2">favorite</span>
-      <h2 class="font-script text-gold text-5xl mb-4">Our Story</h2>
-      <p class="font-serif italic text-gray-500 mb-8">How it all began</p>
-      
-      <div class="grid md:grid-cols-2 gap-8 items-center text-left">
-        <div class="overflow-hidden rounded-lg border border-gold/30 shadow-md aspect-[4/3] relative">
-          <div class="absolute inset-0 bg-cover bg-center hover:scale-105 transition-transform duration-700" style="background-image: url('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=600');"></div>
-        </div>
-        <div class="space-y-4">
-          <h3 class="font-serif text-xl font-semibold text-emerald-light">Our Journey of Love</h3>
-          <p class="font-sans text-sm text-gray-600 leading-relaxed font-light">
-            From our very first meeting in Sfax, we knew we had found a lifelong partner in one another. Over years filled with beautiful travels, support, and friendship, we grew closer and decided to take this step to join our paths permanently.
-          </p>
-          <p class="font-sans text-sm text-gray-600 leading-relaxed font-light">
-            We are excited to build our home together and would be absolutely delighted to share our celebration evening with you.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Schedule/Timeline Section -->
-    <section id="schedule" class="py-20 bg-emerald/5 border-y border-gold/20 scroll-mt-20">
-      <div class="max-w-screen-md mx-auto px-6 text-center">
-        <span class="material-symbols-outlined text-gold text-4xl mb-2">schedule</span>
-        <h2 class="font-script text-gold text-5xl mb-4">The Wedding Day</h2>
-        <p class="font-serif italic text-gray-500 mb-12">Saturday, July 11, 2026</p>
-
-        <!-- Timeline Container -->
-        <div class="relative timeline-line text-left">
-          
-          <!-- Event 1 -->
-          <div class="relative flex flex-col md:flex-row md:justify-between items-center mb-12 md:mb-16">
-            <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-emerald border-4 border-gold z-10 max-[768px]:left-5 max-[768px]:transform-none"></div>
-            
-            <div class="w-full md:w-[45%] md:text-right pl-12 md:pl-0">
-              <span class="font-sans text-sm font-semibold text-gold block mb-1">7:00 PM</span>
-              <h4 class="font-serif text-lg font-bold text-emerald">Welcome & Reception</h4>
-              <p class="font-sans text-xs text-gray-500 mt-1">
-                Doors open at Aurora Sfax. Guests arrival, greeting with mocktails and traditional wedding music.
-              </p>
-            </div>
-            <div class="hidden md:block w-[10%]"></div>
-            <div class="w-full md:w-[45%] pl-12 md:pl-0 mt-2 md:mt-0">
-              <span class="text-xs uppercase bg-gold/10 text-gold-dark px-3 py-1 rounded font-sans font-medium">Formal Attire</span>
-            </div>
-          </div>
-
-          <!-- Event 2 -->
-          <div class="relative flex flex-col md:flex-row md:justify-between items-center mb-12 md:mb-16">
-            <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-emerald border-4 border-gold z-10 max-[768px]:left-5 max-[768px]:transform-none"></div>
-            
-            <div class="hidden md:block w-[45%] text-right">
-              <span class="text-xs uppercase bg-gold/10 text-gold-dark px-3 py-1 rounded font-sans font-medium">Dinner Buffet & Speeches</span>
-            </div>
-            <div class="hidden md:block w-[10%]"></div>
-            <div class="w-full md:w-[45%] pl-12 md:pl-0">
-              <span class="font-sans text-sm font-semibold text-gold block mb-1">8:00 PM</span>
-              <h4 class="font-serif text-lg font-bold text-emerald">Wedding Dinner</h4>
-              <p class="font-sans text-xs text-gray-500 mt-1">
-                A premium sit-down dinner and cutting of the wedding cake, featuring short wishes from families.
-              </p>
-              <div class="md:hidden mt-2">
-                <span class="text-xs uppercase bg-gold/10 text-gold-dark px-3 py-1 rounded font-sans font-medium">Dinner & Cake</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Event 3 -->
-          <div class="relative flex flex-col md:flex-row md:justify-between items-center">
-            <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-emerald border-4 border-gold z-10 max-[768px]:left-5 max-[768px]:transform-none"></div>
-            
-            <div class="w-full md:w-[45%] md:text-right pl-12 md:pl-0">
-              <span class="font-sans text-sm font-semibold text-gold block mb-1">9:00 PM</span>
-              <h4 class="font-serif text-lg font-bold text-emerald">Dance & Music Celebration</h4>
-              <p class="font-sans text-xs text-gray-500 mt-1">
-                Music and dancing in celebration of the union. The event will officially draw to a close at 10:00 PM.
-              </p>
-            </div>
-            <div class="hidden md:block w-[10%]"></div>
-            <div class="w-full md:w-[45%] pl-12 md:pl-0 mt-2 md:mt-0">
-              <span class="text-xs uppercase bg-gold/10 text-gold-dark px-3 py-1 rounded font-sans font-medium">Duration: 3 Hours</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Photo Sharing Hub Section -->
-    <section id="share-moments" class="py-20 bg-emerald text-cream relative scroll-mt-20">
-      <!-- Decorative Border -->
-      <div class="absolute inset-6 border border-gold/25 pointer-events-none"></div>
-
-      <div class="max-w-screen-md mx-auto px-6 relative z-10 text-center">
-        <span class="material-symbols-outlined text-gold text-4xl mb-2">add_a_photo</span>
-        <h2 class="font-script text-gold-light text-5xl mb-4">Share Your Moments</h2>
-        <p class="font-serif italic text-gray-300 text-sm mb-12">
-          Help us capture every memory. Upload your photos directly here or save them to our Google Drive!
+        <h1 class="font-script text-gold-dark text-6xl md:text-7xl mb-3 animate-float leading-tight">Mohamed & Rihem</h1>
+        
+        <p class="font-serif text-xs md:text-sm italic text-gray-600 font-light max-w-sm mx-auto leading-relaxed mb-6">
+          We invite you to share our joy in celebration of our marriage and the beginning of our life together.
         </p>
 
-        <div class="grid md:grid-cols-2 gap-8 items-stretch">
-          
-          <!-- Column 1: Share Website QR Code -->
-          <div class="bg-emerald-dark/60 border border-gold/30 rounded-lg p-6 flex flex-col items-center justify-between backdrop-blur-sm">
-            <h3 class="font-serif text-lg text-gold-light font-semibold mb-4">Share the Website</h3>
-            
-            <!-- Real QR Code pointing to the wedding website -->
-            <div class="qr-frame mb-4 w-40 h-40 flex items-center justify-center bg-white rounded-lg p-2 border border-gold/40 shadow-md">
-              <img src="qr_code.png" alt="Share Website QR Code" class="w-full h-full object-contain"/>
+        <div class="premium-divider w-32">
+          <span class="material-symbols-outlined text-gold text-[16px]">favorite</span>
+        </div>
+
+        <!-- Embedded Countdown Widget (Exactly like app-style dashboards) -->
+        <div class="w-full max-w-xs bg-[#f5efeb] border border-gold/30 rounded-2xl p-4 my-2 text-charcoal">
+          <p class="font-sans text-[8px] uppercase tracking-widest text-gold-dark font-bold mb-3">COUNTING DOWN</p>
+          <div class="grid grid-cols-4 gap-1.5">
+            <div class="text-center">
+              <span id="days" class="block font-serif text-xl font-bold text-gold-dark">00</span>
+              <span class="text-[7px] uppercase tracking-wider font-sans text-gray-500">Days</span>
             </div>
-            
-            <p class="font-sans text-xs text-gray-300 leading-relaxed mb-6">
-              Scan this QR code with your phone camera or use the button below to copy the link and share this digital invitation!
+            <div class="text-center border-l border-gold/25">
+              <span id="hours" class="block font-serif text-xl font-bold text-gold-dark">00</span>
+              <span class="text-[7px] uppercase tracking-wider font-sans text-gray-500">Hours</span>
+            </div>
+            <div class="text-center border-l border-gold/25">
+              <span id="minutes" class="block font-serif text-xl font-bold text-gold-dark">00</span>
+              <span class="text-[7px] uppercase tracking-wider font-sans text-gray-500">Mins</span>
+            </div>
+            <div class="text-center border-l border-gold/25">
+              <span id="seconds" class="block font-serif text-xl font-bold text-gold-dark">00</span>
+              <span class="text-[7px] uppercase tracking-wider font-sans text-gray-500">Secs</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bento Cards Grid -->
+      <div id="details-grid" class="collage-grid">
+        
+        <!-- Card 2: Date & Location Card (White Card) -->
+        <div class="card-premium-cream reveal-card flex flex-col justify-between items-center text-center p-6">
+          <div class="flex flex-col items-center">
+            <span class="material-symbols-outlined text-gold-dark text-2xl mb-2">calendar_month</span>
+            <h3 class="font-serif text-base font-bold text-[#322d29] mb-1">When & Where</h3>
+            <p class="font-sans text-[8px] text-gray-400 uppercase tracking-widest mb-4">Celebration Details</p>
+          </div>
+          <div class="my-3">
+            <span class="font-sans text-2xl font-bold tracking-wider text-gold-dark block">JULY 11, 2026</span>
+            <span class="font-serif text-xs text-gray-500 italic block mt-1">Saturday • 7:00 PM Reception</span>
+            <span class="font-sans text-xs font-semibold text-gray-600 block mt-2">Aurora Sfax, Tunisia</span>
+          </div>
+          <div class="w-full mt-3">
+            <a href="https://www.google.com/maps?q=Aurora,Sfax,Tunisia" target="_blank" class="w-full bg-gold/10 hover:bg-gold/20 text-gold-dark border border-gold/30 py-2 px-3 rounded-xl font-sans text-[9px] font-bold tracking-widest uppercase transition-all flex items-center justify-center gap-1.5">
+              <span class="material-symbols-outlined text-[14px]">directions</span>
+              Get Directions
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 3: Dress Code Card (Light Beige/Sand Card) -->
+        <div class="card-premium-dark reveal-card flex flex-col justify-between items-center text-center p-6">
+          <div class="flex flex-col items-center">
+            <span class="material-symbols-outlined text-gold-dark text-2xl mb-2">styler</span>
+            <h3 class="font-serif text-base font-bold text-[#322d29] mb-1">Dress Code</h3>
+            <p class="font-sans text-[8px] text-gray-500 uppercase tracking-widest mb-4">Attire Guide</p>
+          </div>
+          <div class="my-auto text-center">
+            <span class="font-sans text-sm font-bold text-[#322d29] tracking-wider uppercase block mb-1">FORMAL ATTIRE</span>
+            <p class="font-serif text-xs italic text-gray-600 max-w-[190px] mx-auto leading-relaxed">
+              We suggest earthy shades and formal attire for our guests
             </p>
-            
-            <button id="copy-link-btn" class="w-full bg-gold/20 hover:bg-gold/30 text-gold-light border border-gold/40 hover:border-gold py-2.5 rounded font-sans text-xs font-semibold tracking-widest uppercase transition-all flex items-center justify-center gap-2">
-              <span class="material-symbols-outlined text-sm">content_copy</span>
-              <span id="copy-btn-text">Copy Website Link</span>
+          </div>
+          
+          <!-- Visual Circular Color Chips (Suggested Palette) -->
+          <div class="mt-4 flex flex-col items-center w-full">
+            <div class="flex gap-2 justify-center mb-1">
+              <div class="palette-chip bg-[#a3b19b]" title="Sage Green"></div>
+              <div class="palette-chip bg-[#8a9a86]" title="Earthy Olive"></div>
+              <div class="palette-chip bg-[#d3a297]" title="Warm Rose"></div>
+              <div class="palette-chip bg-[#dccbb5]" title="Muted Gold"></div>
+              <div class="palette-chip bg-[#6e7a8a]" title="Slate Blue"></div>
+            </div>
+            <span class="text-[7px] font-sans font-semibold tracking-wider text-gray-500 uppercase">Suggested Guest Palette</span>
+          </div>
+        </div>
+
+        <!-- Card 5: Song Suggestion Card (Light Beige/Sand Card) -->
+        <div class="card-premium-dark reveal-card flex flex-col justify-between items-center text-center p-6">
+          <div class="flex flex-col items-center">
+            <span class="material-symbols-outlined text-gold-dark text-2xl mb-2">music_note</span>
+            <h3 class="font-serif text-base font-bold text-[#322d29] mb-1">Sugerir Canción</h3>
+            <p class="font-sans text-[8px] text-gray-500 uppercase tracking-widest mb-4">Suggest a song</p>
+          </div>
+          
+          <form id="song-form" class="space-y-3 w-full text-left">
+            <input id="song-title" required type="text" placeholder="Song Title & Artist" class="w-full form-input py-2 px-3 rounded-xl text-charcoal font-sans text-xs"/>
+            <input id="song-name" required type="text" placeholder="Your Name" class="w-full form-input py-2 px-3 rounded-xl text-charcoal font-sans text-xs"/>
+            <button type="submit" id="song-submit-btn" class="w-full bg-[#322d29] text-white font-sans text-[9px] font-bold uppercase tracking-widest py-2.5 rounded-xl hover:bg-gold-dark active:scale-95 transition-all">
+              Sugerir Canción
+            </button>
+          </form>
+
+          <!-- Response placeholder -->
+          <div id="song-response" class="hidden mt-3 p-2 rounded text-center font-sans text-[9px] font-semibold bg-white/70 text-gold-dark border border-gold/20"></div>
+        </div>
+
+        <!-- Card 6: Share Photos & Direct Upload Card (White Card) -->
+        <div id="share-moments" class="card-premium-cream reveal-card flex flex-col justify-between items-center text-center p-6">
+          <div class="flex flex-col items-center">
+            <span class="material-symbols-outlined text-gold-dark text-2xl mb-2">cloud_upload</span>
+            <h3 class="font-serif text-base font-bold text-[#322d29] mb-1">Share Photos</h3>
+            <p class="font-sans text-[8px] text-gray-400 uppercase tracking-widest mb-3">Upload direct to Google Drive</p>
+          </div>
+          
+          <!-- Drag & Drop Zone -->
+          <div id="upload-zone" class="upload-zone rounded-xl p-5 flex flex-col items-center justify-center h-28 w-full">
+            <input type="file" id="photo-input" accept="image/*" class="hidden" multiple/>
+            <span class="material-symbols-outlined text-gold-dark text-2xl mb-1">cloud_upload</span>
+            <p class="font-sans text-[9px] text-gold-dark font-bold tracking-wide text-center">Tap to choose or drag photos here</p>
+          </div>
+
+          <!-- Upload Progress & Status -->
+          <div id="upload-status-container" class="hidden my-2 text-left w-full">
+            <div class="flex justify-between items-center text-[9px] text-gray-500 mb-1 font-sans">
+              <span id="upload-filename" class="truncate max-w-[120px]">Photo.jpg</span>
+              <span id="upload-percentage">0%</span>
+            </div>
+            <div class="w-full bg-[#f5efeb] rounded-full overflow-hidden">
+              <div id="upload-progress-bar" class="upload-progress-bar"></div>
+            </div>
+          </div>
+
+          <!-- Status message container -->
+          <div id="upload-status-msg" class="hidden mt-2 p-1.5 rounded text-center font-sans text-[9px] font-semibold"></div>
+
+          <div class="w-full mt-3">
+            <button id="copy-link-btn" class="w-full bg-gold/10 hover:bg-gold/20 text-gold-dark border border-gold/30 py-2 rounded-xl font-sans text-[9px] font-bold tracking-widest uppercase transition-all flex items-center justify-center gap-1.5">
+              <span class="material-symbols-outlined text-[13px]">share</span>
+              <span id="copy-btn-text">Share Invite Link</span>
             </button>
           </div>
+        </div>
 
-          <!-- Column 2: Direct Upload on Website -->
-          <div class="bg-emerald-dark/60 border border-gold/30 rounded-lg p-6 flex flex-col justify-between backdrop-blur-sm">
-            <h3 class="font-serif text-lg text-gold-light font-semibold mb-4">Upload Directly</h3>
-            
-            <!-- Drag & Drop Zone -->
-            <div id="upload-zone" class="upload-zone rounded-lg p-8 flex flex-col items-center justify-center h-44">
-              <input type="file" id="photo-input" accept="image/*" class="hidden" multiple/>
-              <span class="material-symbols-outlined text-gold text-4xl mb-2">cloud_upload</span>
-              <p class="font-sans text-xs text-gold-light font-medium tracking-wide text-center">Tap to choose or drag photos here</p>
-              <p class="font-sans text-[10px] text-gray-400 mt-1 text-center md:block hidden">or drop files directly here</p>
+        <!-- Card 8: RSVP / Wishes Card (White Card, col-span-2) -->
+        <div id="cute-messages" class="card-premium-cream reveal-card col-span-2 text-center p-6 scroll-mt-20">
+          <span class="material-symbols-outlined text-gold-dark text-2xl mb-1">favorite</span>
+          <h3 class="font-script text-gold-dark text-4xl mb-1">Confirmar Asistencia</h3>
+          <p class="font-serif italic text-gray-400 text-xs mb-5">
+            Leave your warm wishes or marriage advice for Mohamed & Rihem!
+          </p>
+
+          <!-- Messages Form -->
+          <form id="rsvp-form" class="space-y-3.5 text-left max-w-sm mx-auto bg-[#f5efeb]/60 p-5 rounded-2xl border border-gold/20">
+            <div>
+              <label for="rsvp-name" class="font-sans text-[9px] uppercase tracking-widest text-gold-dark font-bold block mb-1">Full Name *</label>
+              <input id="rsvp-name" required type="text" placeholder="Your Name" class="w-full form-input py-2 px-3 rounded-xl text-charcoal font-sans text-xs"/>
             </div>
 
-            <!-- Upload Progress & Status -->
-            <div id="upload-status-container" class="hidden my-4 text-left">
-              <div class="flex justify-between items-center text-xs text-gray-300 mb-1 font-sans">
-                <span id="upload-filename" class="truncate max-w-[200px]">Photo.jpg</span>
-                <span id="upload-percentage">0%</span>
-              </div>
-              <div class="w-full bg-emerald/65 rounded-full overflow-hidden">
-                <div id="upload-progress-bar" class="upload-progress-bar"></div>
-              </div>
+            <div>
+              <label for="rsvp-email" class="font-sans text-[9px] uppercase tracking-widest text-gold-dark font-bold block mb-1">Email Address</label>
+              <input id="rsvp-email" type="email" placeholder="name@domain.com" class="w-full form-input py-2 px-3 rounded-xl text-charcoal font-sans text-xs"/>
             </div>
 
-            <!-- Status message container -->
-            <div id="upload-status-msg" class="hidden mt-3 p-2.5 rounded text-center font-sans text-xs font-medium"></div>
+            <div>
+              <label for="rsvp-message" class="font-sans text-[9px] uppercase tracking-widest text-gold-dark font-bold block mb-1">Wishes & Advice ♥</label>
+              <textarea id="rsvp-message" rows="3" placeholder="Share a warm wish, a favorite memory, or some sweet marriage advice for Mohamed & Rihem..." class="w-full form-input py-2 px-3 rounded-xl text-charcoal font-sans text-xs resize-none"></textarea>
+            </div>
 
-            <p class="font-sans text-[10px] text-gray-400 leading-normal mt-4">
-              Supports JPG, PNG, WEBP, and GIF up to 10MB. Uploaded photos will automatically render in the wedding gallery below.
-            </p>
+            <button type="submit" id="submit-btn" class="w-full bg-[#322d29] text-white font-sans text-[9px] font-bold uppercase tracking-widest py-3 rounded-xl hover:bg-gold-dark active:scale-95 transition-all shadow-sm flex items-center justify-center gap-1.5">
+              <span>Confirm Attendance & Send</span>
+              <span class="material-symbols-outlined text-[13px]">send</span>
+            </button>
+          </form>
+
+          <!-- Response Message -->
+          <div id="rsvp-response" class="hidden mt-4 p-3 rounded-xl bg-gold/10 border border-gold/30 text-gold-dark font-sans text-xs font-light">
           </div>
-
         </div>
+
       </div>
-    </section>
 
-    <!-- Photo Gallery Section -->
-    <section id="gallery" class="py-20 px-6 max-w-screen-md mx-auto text-center scroll-mt-20">
-      <span class="material-symbols-outlined text-gold text-4xl mb-2">gallery_thumbnail</span>
-      <h2 class="font-script text-gold text-5xl mb-4">Gallery</h2>
-      <p class="font-serif italic text-gray-500 mb-12">Capturing our moments together</p>
+    </div>
 
-      <!-- Dynamic Gallery Grid Container -->
-      <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <!-- Rendered dynamically by JS -->
-      </div>
-    </section>
-
-    <!-- RSVP Section -->
-    <!-- Cute Messages Section -->
-    <section id="cute-messages" class="py-20 bg-emerald text-cream relative scroll-mt-20">
-      <!-- Decors -->
-      <div class="absolute inset-6 border border-gold/25 pointer-events-none"></div>
-
-      <div class="max-w-md mx-auto px-8 relative z-10 text-center">
-        <span class="material-symbols-outlined text-gold text-4xl mb-2">favorite</span>
-        <h2 class="font-script text-gold-light text-5xl mb-4">Cute Messages</h2>
-        <p class="font-serif italic text-gray-300 text-sm mb-8">
-          Leave your warm wishes, sweet notes, or marriage advice for Mohamed & Rihem!
-        </p>
-
-        <!-- Messages Form -->
-        <form id="rsvp-form" class="space-y-5 text-left bg-emerald-dark/60 p-6 rounded-lg border border-gold/30 backdrop-blur-sm">
-          <div>
-            <label for="rsvp-name" class="font-sans text-xs uppercase tracking-widest text-gold-light block mb-2">Full Name *</label>
-            <input id="rsvp-name" required type="text" placeholder="Your Name" class="w-full form-input py-2 px-3 rounded text-emerald font-sans text-sm focus:border-gold"/>
-          </div>
-
-          <div>
-            <label for="rsvp-email" class="font-sans text-xs uppercase tracking-widest text-gold-light block mb-2">Email Address</label>
-            <input id="rsvp-email" type="email" placeholder="name@domain.com" class="w-full form-input py-2 px-3 rounded text-emerald font-sans text-sm focus:border-gold"/>
-          </div>
-
-          <div>
-            <label for="rsvp-message" class="font-sans text-xs uppercase tracking-widest text-gold-light block mb-2">Send a Cute Note to the Couple ♥</label>
-            <textarea id="rsvp-message" rows="3" placeholder="Share a warm wish, a favorite memory, or some sweet marriage advice for Mohamed & Rihem..." class="w-full form-input py-2 px-3 rounded text-emerald font-sans text-sm focus:border-gold resize-none"></textarea>
-          </div>
-
-          <button type="submit" id="submit-btn" class="w-full bg-gold text-emerald font-sans text-xs font-bold uppercase tracking-widest py-3 rounded-lg hover:bg-gold-light active:scale-95 transition-all shadow-md flex items-center justify-center gap-2">
-            <span>Send Cute Note</span>
-            <span class="material-symbols-outlined text-sm">send</span>
-          </button>
-        </form>
-
-        <!-- Response Message -->
-        <div id="rsvp-response" class="hidden mt-6 p-4 rounded-lg bg-gold/10 border border-gold/40 text-gold-light font-sans text-sm font-light">
-        </div>
-      </div>
-    </section>
-
-    <!-- Venue & Location Section -->
-    <section class="py-20 px-6 max-w-screen-md mx-auto text-center">
-      <span class="material-symbols-outlined text-gold text-4xl mb-2">location_on</span>
-      <h2 class="font-script text-gold text-5xl mb-4">Venue & Location</h2>
-      <p class="font-serif italic text-gray-500 mb-8">Aurora Sfax</p>
-      
-      <p class="font-sans text-sm text-gray-600 max-w-md mx-auto mb-6 font-light leading-relaxed font-semibold">
-        Aurora, Sfax, Tunisia<br/>
-        Valet parking is available at the entrance of the venue.
-      </p>
-
-      <!-- Embedded Google Map Mockup or Real iframe for Sfax Location -->
-      <div class="overflow-hidden rounded-lg border border-gold/30 shadow-md h-64 relative">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d104879.48937033571!2d10.669865181514785!3d34.767355030829875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13002cda1486c6e1%3A0x19ee61302a7373b3!2sSfax%2C%20Tunisia!5e0!3m2!1sen!2sus!4v1718738200000!5m2!1sen!2sus" class="absolute inset-0 w-full h-full border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-      <div class="mt-4 flex justify-center">
-        <a href="https://www.google.com/maps?q=Aurora,Sfax,Tunisia" target="_blank" class="bg-gold/10 hover:bg-gold/20 text-gold-dark hover:text-gold border border-gold/40 hover:border-gold py-2 px-5 rounded-lg font-sans text-xs font-semibold tracking-widest uppercase transition-all flex items-center justify-center gap-2">
-          <span class="material-symbols-outlined text-sm">directions</span>
-          Get Directions
-        </a>
-      </div>
-    </section>
-
-    <!-- registry & footer info -->
-    <footer class="pt-16 pb-12 bg-emerald-dark text-cream/80 text-center relative border-t border-gold/30">
+    <!-- footer info -->
+    <footer class="pt-10 pb-8 bg-[#f5efeb] text-gray-500 text-center relative">
       <div class="max-w-md mx-auto px-6">
-        <h3 class="font-script text-gold-light text-4xl mb-2">Thank You</h3>
-        <p class="font-serif italic text-xs mb-8">We look forward to celebrating with you!</p>
+        <h3 class="font-script text-gold-dark text-3xl mb-1">Thank You</h3>
+        <p class="font-serif italic text-[11px] mb-6">We look forward to celebrating with you!</p>
         
-        <p class="font-sans text-[10px] tracking-widest uppercase text-gold-light font-semibold mb-2">Registry & Gifts</p>
-        <p class="font-sans text-xs text-gray-400 max-w-xs mx-auto mb-10 font-light font-medium">
-          Your presence is our greatest gift. Should you wish to honor us with a gift, we have registered a honeymoon fund.
-        </p>
-        
-        <div class="text-[10px] font-sans tracking-widest text-gray-500 font-medium">
+        <div class="text-[8px] font-sans tracking-widest text-gray-400 font-bold uppercase">
           © 2026 MOHAMED & RIHEM. ALL RIGHTS RESERVED.
         </div>
-        <div class="text-[9px] font-sans tracking-widest text-gold/60 font-light mt-2 uppercase">
-          Designed & Crafted by <span class="text-gold-light font-medium">Salmen Khabou</span>
+        <div class="text-[7px] font-sans tracking-widest text-gold/60 font-light mt-1 uppercase">
+          Designed & Crafted by <span class="text-gold-dark font-semibold">Salmen Khabou</span>
         </div>
       </div>
     </footer>
 
   </main>
 
-  <!-- Lightbox Modal -->
-  <div id="lightbox-modal" class="fixed inset-0 bg-black/95 z-50 flex items-center justify-center">
-    <button id="lightbox-close" class="absolute top-6 right-6 text-white hover:text-gold transition-colors focus:outline-none">
+  <!-- Lightbox Modal (For uploaded file checking/viewing if needed) -->
+  <div id="lightbox-modal" class="fixed inset-0 bg-[#322d29]/95 z-50 flex items-center justify-center">
+    <button id="lightbox-close" class="absolute top-6 right-6 text-white hover:text-gold transition-colors focus:outline-none" aria-label="Close photo view">
       <span class="material-symbols-outlined text-4xl">close</span>
     </button>
-    <img id="lightbox-img" src="" alt="Fullscreen view" class="max-w-[90%] max-h-[85vh] rounded-lg shadow-2xl border border-gold/25 object-contain"/>
+    <img id="lightbox-img" src="" alt="Fullscreen view" class="max-w-[90%] max-h-[85vh] rounded-2xl shadow-2xl border border-gold/20 object-contain"/>
   </div>
 
   <script src="app.js"></script>
